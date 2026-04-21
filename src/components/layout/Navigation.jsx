@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { contactInfo, footerContent, navItems } from "../../data/content";
+import logoWhite from "../../assets/icons/logo-white-2.png";
 import { GithubIcon, MailIcon, ArrowRightIcon } from "../ui/Icons";
 
 function DockLink({ href, children, onClick }) {
@@ -44,9 +45,11 @@ export function Header() {
             onClick={closeMenu}
             className="inline-flex min-h-[44px] items-center gap-2 whitespace-nowrap rounded-full font-medium text-white lg:min-h-[50px] lg:gap-3"
           >
-            <span className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-white text-[11px] font-bold text-black lg:h-7 lg:w-7 lg:rounded-lg lg:text-xs">
-              DD
-            </span>
+            <img
+              src={logoWhite}
+              alt="DD logo"
+              className="h-8 w-auto shrink-0 lg:h-9"
+            />
             <span className="hidden xs:inline lg:text-base">Dominiak</span>
           </a>
 
@@ -197,9 +200,11 @@ export function Footer() {
     <footer className="border-t border-white/10 px-5 py-10 sm:px-8 lg:px-10">
       <div className="mx-auto flex max-w-7xl flex-col gap-8 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
         <div className="inline-flex items-center gap-2 font-medium text-white">
-          <span className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-white text-[11px] font-bold text-black">
-            DD
-          </span>
+          <img
+            src={logoWhite}
+            alt="DD logo"
+            className="h-7 w-auto shrink-0"
+          />
           {footerContent.signature}
         </div>
         <div className="font-mono text-[11px] uppercase tracking-[0.1em]">
