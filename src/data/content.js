@@ -27,31 +27,27 @@ export const heroContent = {
 
 export const aboutSection = {
   eyebrow: "01 · O mnie",
-  titleLead: "Buduję strony i interfejsy,",
-  titleAccent: "które mają sens biznesowo.",
+  titleLead: "Nowoczesny frontend,",
+  titleAccent: "który prowadzi do celu.",
   description:
-    "Jestem studentem informatyki, który łączy estetykę z czytelnością, wydajnością i dopracowanym frontendem.",
+    "Landing page'e i interfejsy, które wyglądają premium, działają szybko i jasno prowadzą użytkownika.",
   supportingText:
-    "Najlepiej czuję się przy landing page'ach i nowoczesnych interfejsach, gdzie liczy się pierwsze wrażenie, mocna hierarchia treści i płynne doświadczenie użytkownika.",
+    "Estetyka. Hierarchia. Dopracowany frontend.",
+  imageAlt: "Portret w czarnym swetrze na transparentnym tle.",
   primaryCta: "Współpraca",
   secondaryCta: "Zobacz projekty",
   highlights: [
-    { title: "Frontend", text: "React, komponenty, UI" },
-    { title: "UX clarity", text: "Hierarchia, flow, CTA" },
-    { title: "Performance", text: "Szybkość, SEO basics" },
+    { title: "Premium UI", text: "mocny pierwszy ekran" },
+    { title: "UX clarity", text: "jasny kierunek i CTA" },
+    { title: "Performance", text: "lekki, szybki frontend" },
   ],
   sideCard: {
-    eyebrow: "Jak pracuję",
-    title: "Od pierwszego ekranu do sensownego wdrożenia.",
+    eyebrow: "Focus",
+    title: "Nowoczesny frontend",
     description:
-      "Skupiam się na jasnym przekazie, dopracowanym układzie sekcji i detalach interakcji, które wspierają odbiór zamiast odciągać uwagę.",
-    points: [
-      "Mocny hero i czytelne prowadzenie użytkownika",
-      "Responsywny interfejs bez zbędnego chaosu",
-      "Detale wizualne, które wzmacniają jakość wykonania",
-    ],
-    chips: ["React", "Tailwind", "Framer Motion", "Responsive UI"],
-    note: "Aktualnie rozwijam się w stronę coraz pełniejszych wdrożeń webowych.",
+      "Estetyka, responsywność i detale, które wzmacniają odbiór zamiast go rozpraszać.",
+    chips: ["React", "Tailwind", "Framer Motion"],
+    note: "Frontend, UX i performance w jednym flow.",
   },
 };
 
