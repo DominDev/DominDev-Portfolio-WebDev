@@ -83,7 +83,7 @@ export function Hero() {
             animate="visible"
             variants={fadeUp}
             transition={{ duration: 0.55 }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-zinc-300"
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2.5 font-mono text-xs uppercase tracking-[0.12em] text-zinc-200 sm:px-5"
           >
             <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(74,222,128,0.5)]">
               <span className="absolute inset-[-4px] animate-ping rounded-full bg-emerald-400/40" />
