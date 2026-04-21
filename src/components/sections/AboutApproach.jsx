@@ -6,6 +6,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { aboutSection, principles } from "../../data/content";
+import personImage from "../../assets/images/person-1.png";
 import { PrimaryButton, GhostButton } from "../ui/Button";
 import { ArrowRightIcon } from "../ui/Icons";
 import { MeshBackground } from "../effects/Backgrounds";
@@ -33,7 +34,7 @@ export function About() {
       <MeshBackground />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.7)_90%)]" />
 
-      <div className="relative z-[3] mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+      <div className="relative z-[3] mx-auto max-w-7xl">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -41,99 +42,91 @@ export function About() {
           variants={fadeUp}
           transition={{ duration: 0.5 }}
         >
-          <div className="mb-4 inline-block border-b border-white/10 pb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-500">
-            {aboutSection.eyebrow}
-          </div>
-          <h2 className="text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
-            {aboutSection.titleLead}
-            <br />
-            <span className="text-zinc-400">{aboutSection.titleAccent}</span>
-          </h2>
-
-          <p className="mt-6 max-w-[48ch] text-lg leading-8 text-zinc-300">
-            {aboutSection.description}
-          </p>
-          <p className="muted-copy mt-5 max-w-[52ch] text-base leading-7 sm:text-[17px] sm:leading-8">
-            {aboutSection.supportingText}
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            <PrimaryButton as="a" href="#contact">
-              {aboutSection.primaryCta}
-              <ArrowRightIcon className="h-4 w-4" />
-            </PrimaryButton>
-            <GhostButton as="a" href="#work">
-              {aboutSection.secondaryCta}
-            </GhostButton>
-          </div>
-
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
-            {aboutSection.highlights.map((item) => (
-              <div
-                key={item.title}
-                className="rounded-[20px] border border-white/10 bg-white/[0.03] px-5 py-5"
-              >
-                <div className="text-xl font-semibold text-white">{item.title}</div>
-                <div className="muted-copy mt-2 text-sm leading-6">{item.text}</div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="relative"
-        >
           <SurfaceCard
             glow
             onPointerMove={handleGlowMove}
-            className="rounded-[28px] border-white/12 bg-white/[0.04] p-7 sm:p-8"
+            className="rounded-[32px] border-white/12 bg-[#050505]/90 shadow-[0_30px_90px_-40px_rgba(0,0,0,0.85)]"
           >
-            <div className="flex h-full flex-col gap-6">
-              <div>
-                <div className="mb-4 inline-block border-b border-white/10 pb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-500">
-                  {aboutSection.sideCard.eyebrow}
-                </div>
-                <h3 className="max-w-[14ch] text-3xl font-semibold tracking-[-0.04em] text-white sm:text-[2.35rem]">
-                  {aboutSection.sideCard.title}
-                </h3>
-                <p className="muted-copy mt-5 max-w-[42ch] text-sm leading-7 sm:text-[15px]">
-                  {aboutSection.sideCard.description}
-                </p>
-              </div>
+            <div className="relative overflow-hidden rounded-[32px]">
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.08),transparent_32%),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.12),transparent_24%)]" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[42%] bg-[linear-gradient(270deg,rgba(255,255,255,0.04),transparent)] lg:block" />
 
-              <div className="grid gap-3">
-                {aboutSection.sideCard.points.map((point, index) => (
-                  <div
-                    key={point}
-                    className="flex items-start gap-4 rounded-[20px] border border-white/10 bg-black/30 px-4 py-4"
-                  >
-                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] font-mono text-[11px] text-white">
-                      0{index + 1}
-                    </span>
-                    <p className="text-sm leading-7 text-zinc-200">{point}</p>
+              <div className="relative grid gap-8 px-6 py-7 sm:px-8 sm:py-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-center lg:px-10 lg:py-9">
+                <div className="relative z-10 max-w-[36rem]">
+                  <div className="mb-4 inline-block border-b border-white/10 pb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-500">
+                    {aboutSection.eyebrow}
                   </div>
-                ))}
-              </div>
+                  <h2 className="text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
+                    {aboutSection.titleLead}
+                    <br />
+                    <span className="text-zinc-400">{aboutSection.titleAccent}</span>
+                  </h2>
 
-              <div className="flex flex-wrap gap-2 pt-1">
-                {aboutSection.sideCard.chips.map((chip) => (
-                  <span
-                    key={chip}
-                    className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 font-mono text-[11px] text-zinc-200"
-                  >
-                    {chip}
-                  </span>
-                ))}
-              </div>
+                  <p className="mt-6 max-w-[48ch] text-lg leading-8 text-zinc-300">
+                    {aboutSection.description}
+                  </p>
+                  <p className="muted-copy mt-4 max-w-[32ch] text-sm leading-6 sm:text-[15px]">
+                    {aboutSection.supportingText}
+                  </p>
 
-              <p className="muted-copy border-t border-white/10 pt-5 text-sm leading-7">
-                {aboutSection.sideCard.note}
-              </p>
+                  <div className="mt-7 grid gap-3 sm:grid-cols-3">
+                    {aboutSection.highlights.map((item) => (
+                      <div
+                        key={item.title}
+                        className="rounded-[20px] border border-white/10 bg-white/[0.03] px-4 py-4"
+                      >
+                        <div className="text-base font-semibold text-white">{item.title}</div>
+                        <div className="muted-copy mt-2 text-sm leading-6">{item.text}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-7 flex flex-wrap gap-3">
+                    <PrimaryButton as="a" href="#contact">
+                      {aboutSection.primaryCta}
+                      <ArrowRightIcon className="h-4 w-4" />
+                    </PrimaryButton>
+                    <GhostButton as="a" href="#work">
+                      {aboutSection.secondaryCta}
+                    </GhostButton>
+                  </div>
+                </div>
+
+                <div className="relative mx-auto flex w-full max-w-[24rem] flex-col items-center pt-2 lg:items-end lg:pt-0">
+                  <div className="pointer-events-none absolute bottom-16 h-[72%] w-[72%] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.2),rgba(255,255,255,0.07)_38%,transparent_72%)] blur-3xl" />
+                  <div className="pointer-events-none absolute inset-x-[14%] bottom-6 h-8 rounded-full bg-white/10 blur-2xl" />
+
+                  <div className="relative w-full">
+                    <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-zinc-400 lg:ml-auto">
+                      <span className="text-white">{aboutSection.sideCard.eyebrow}</span>
+                      <span className="h-1 w-1 rounded-full bg-white/25" />
+                      <span>{aboutSection.sideCard.title}</span>
+                    </div>
+
+                    <img
+                      src={personImage}
+                      alt={aboutSection.imageAlt}
+                      className="relative z-10 mx-auto h-auto max-h-[30rem] w-full max-w-[22rem] object-contain object-bottom drop-shadow-[0_34px_60px_rgba(255,255,255,0.12)] lg:ml-auto lg:mr-0"
+                    />
+                  </div>
+
+                  <div className="relative z-20 -mt-8 w-full max-w-[20rem] rounded-[20px] border border-white/10 bg-black/45 p-4 backdrop-blur-xl sm:-mt-10 lg:mr-0">
+                    <div className="flex flex-wrap gap-2">
+                      {aboutSection.sideCard.chips.map((chip) => (
+                        <span
+                          key={chip}
+                          className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 font-mono text-[11px] text-zinc-200"
+                        >
+                          {chip}
+                        </span>
+                      ))}
+                    </div>
+                    <p className="muted-copy mt-3 text-sm leading-6">
+                      {aboutSection.sideCard.note}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </SurfaceCard>
         </motion.div>
