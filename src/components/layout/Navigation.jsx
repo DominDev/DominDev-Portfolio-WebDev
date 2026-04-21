@@ -118,7 +118,7 @@ export function Header() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.05 }}
-                  className="text-4xl font-semibold tracking-tight text-white transition hover:text-zinc-300 focus-visible:text-zinc-300"
+                  className="text-3xl font-semibold tracking-tight text-white transition hover:text-zinc-300 focus-visible:text-zinc-300"
                 >
                   {item.label}
                 </motion.a>
@@ -129,23 +129,23 @@ export function Header() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: navItems.length * 0.05 }}
-                className="mt-4 text-4xl font-semibold tracking-tight text-white/60 transition hover:text-white focus-visible:text-white"
+                className="mt-4 text-3xl font-semibold tracking-tight text-white/60 transition hover:text-white focus-visible:text-white"
               >
                 Kontakt
               </motion.a>
             </nav>
 
             {/* Nowa sekcja: Social & Mail w Mobile Menu */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
               className="mt-12 flex flex-col gap-6"
             >
               <div className="h-px w-full bg-white/10" />
-              
+
               <div className="grid grid-cols-1 gap-3">
-                <a 
+                <a
                   href={`mailto:${contactInfo.email}`}
                   className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-white transition hover:bg-white/10 focus-visible:border-white/35 focus-visible:bg-white/10"
                 >
@@ -153,14 +153,19 @@ export function Header() {
                     <MailIcon className="h-5 w-5" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="muted-label text-[10px] uppercase tracking-wider">Napisz wiadomość</span>
+                    <span className="muted-label text-[10px] uppercase tracking-wider">
+                      Napisz wiadomość
+                    </span>
                     <span className="font-medium">{contactInfo.email}</span>
                   </div>
                 </a>
 
                 <div className="grid grid-cols-2 gap-3">
-                  <a 
-                    href={contactInfo.socials.find(s => s.label === "GitHub")?.href}
+                  <a
+                    href={
+                      contactInfo.socials.find((s) => s.label === "GitHub")
+                        ?.href
+                    }
                     target="_blank"
                     rel="noreferrer"
                     className="flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 p-4 text-white transition hover:bg-white/10 focus-visible:border-white/35 focus-visible:bg-white/10"
@@ -168,13 +173,20 @@ export function Header() {
                     <GithubIcon className="h-5 w-5" />
                     <span className="font-medium">GitHub</span>
                   </a>
-                  <a 
-                    href={contactInfo.socials.find(s => s.label === "LinkedIn")?.href}
+                  <a
+                    href={
+                      contactInfo.socials.find((s) => s.label === "LinkedIn")
+                        ?.href
+                    }
                     target="_blank"
                     rel="noreferrer"
                     className="flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 p-4 text-white transition hover:bg-white/10 focus-visible:border-white/35 focus-visible:bg-white/10"
                   >
-                    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="h-5 w-5"
+                    >
                       <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
                     </svg>
                     <span className="font-medium">LinkedIn</span>
@@ -200,11 +212,7 @@ export function Footer() {
     <footer className="border-t border-white/10 px-5 py-10 sm:px-8 lg:px-10">
       <div className="mx-auto flex max-w-7xl flex-col gap-8 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
         <div className="inline-flex items-center gap-2 font-medium text-white">
-          <img
-            src={logoWhite}
-            alt="DD logo"
-            className="h-7 w-auto shrink-0"
-          />
+          <img src={logoWhite} alt="DD logo" className="h-7 w-auto shrink-0" />
           {footerContent.signature}
         </div>
         <div className="font-mono text-[11px] uppercase tracking-[0.1em]">
