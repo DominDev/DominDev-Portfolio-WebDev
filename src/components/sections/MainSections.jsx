@@ -55,7 +55,7 @@ export function Architecture() {
               <div className="relative z-10 flex h-full flex-col gap-5">
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <span className="block font-mono text-[11px] uppercase tracking-[0.12em] text-zinc-500">
+                    <span className="muted-label block font-mono text-[11px] uppercase tracking-[0.12em]">
                       {item.layer}
                     </span>
                     <h3 className="mt-1 text-3xl font-semibold tracking-[-0.04em] text-white">
@@ -71,7 +71,7 @@ export function Architecture() {
                   {item.chips.map((chip) => (
                     <span
                       key={chip}
-                      className="rounded-md border border-white/10 bg-white/[0.04] px-3 py-2 font-mono text-[11px] text-zinc-300 transition group-hover:border-white/15 group-hover:text-white"
+                      className="rounded-md border border-white/10 bg-white/[0.05] px-3 py-2 font-mono text-[11px] text-zinc-200 transition group-hover:border-white/15 group-hover:text-white"
                     >
                       {chip}
                     </span>
@@ -150,7 +150,7 @@ export function Work() {
             </div>
 
             <div>
-              <div className="mb-4 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.12em] text-zinc-500">
+              <div className="muted-label mb-4 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.12em]">
                 <span className="text-white">{item.number}</span>
                 <span className="h-px flex-1 bg-white/10" />
                 <span>{item.year}</span>
@@ -158,7 +158,7 @@ export function Work() {
               <h3 className="text-3xl font-semibold tracking-[-0.04em] text-white sm:text-4xl">
                 {item.title}
               </h3>
-              <p className="mt-4 max-w-[42ch] text-sm leading-7 text-zinc-400 sm:text-base">
+              <p className="muted-copy mt-4 max-w-[42ch] text-sm leading-7 sm:text-base">
                 {item.text}
               </p>
 
@@ -169,14 +169,14 @@ export function Work() {
                     className={`bg-black/60 p-5 ${mIdx < item.metrics.length - 1 ? "border-b border-r border-white/10 sm:border-b-0" : ""}`}
                   >
                     <div className="text-3xl font-semibold tracking-[-0.03em] text-white">{metric.value}</div>
-                    <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.1em] text-zinc-500">{metric.label}</div>
+                    <div className="muted-label mt-2 font-mono text-[11px] uppercase tracking-[0.1em]">{metric.label}</div>
                   </div>
                 ))}
               </div>
 
               <div className="mt-5 flex flex-wrap gap-2">
                 {item.tags.map((tag) => (
-                  <span key={tag} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 font-mono text-[11px] text-zinc-300">
+                  <span key={tag} className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 font-mono text-[11px] text-zinc-200">
                     {tag}
                   </span>
                 ))}
@@ -221,15 +221,15 @@ export function Contact() {
 
           <a
             href={`mailto:${contactInfo.email}`}
-            className="mx-auto mt-10 inline-flex min-h-[56px] items-center gap-3 rounded-full border border-white/15 bg-white/[0.03] px-6 py-4 text-lg font-medium text-white transition hover:-translate-y-0.5 hover:border-white hover:bg-white/[0.06] max-w-full overflow-hidden"
+            className="mx-auto mt-10 inline-flex min-h-[56px] max-w-full items-center gap-3 overflow-hidden rounded-full border border-white/15 bg-white/[0.04] px-6 py-4 text-lg font-medium text-white transition hover:-translate-y-0.5 hover:border-white hover:bg-white/[0.08] focus-visible:border-white focus-visible:bg-white/[0.08]"
           >
             <span className="truncate">{contactInfo.email}</span>
             <Icons.ArrowRightIcon className="h-5 w-5 shrink-0" />
           </a>
 
-          <div className="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm text-zinc-500">
+          <div className="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm">
             {contactInfo.socials.map(link => (
-              <a key={link.label} href={link.href} className="flex min-h-[44px] items-center transition hover:text-white">
+              <a key={link.label} href={link.href} className="muted-link flex min-h-[44px] items-center transition">
                 {link.label} ↗
               </a>
             ))}
