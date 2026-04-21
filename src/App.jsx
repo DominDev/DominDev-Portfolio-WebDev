@@ -20,12 +20,13 @@ export default function App() {
       {/* Autorski kursor - React 19 zoptymalizuje jego renderowanie */}
       <div
         aria-hidden="true"
-        className={`pointer-events-none fixed z-[9999] hidden rounded-full bg-white mix-blend-difference transition-[width,height,opacity,transform] duration-300 ease-out [@media(pointer:fine)]:block ${
+        className={`pointer-events-none fixed z-[9999] hidden h-5 w-5 rounded-full bg-white mix-blend-difference transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] [@media(pointer:fine)]:block ${
           cursorVisible ? "opacity-100" : "opacity-0"
-        } ${cursorExpanded ? "h-[60px] w-[60px]" : "h-5 w-5"}`}
+        }`}
         style={{
-          left: cursorExpanded ? cursorPosition.x - 30 : cursorPosition.x - 10,
-          top: cursorExpanded ? cursorPosition.y - 30 : cursorPosition.y - 10,
+          left: cursorPosition.x,
+          top: cursorPosition.y,
+          transform: `translate(-50%, -50%) scale(${cursorExpanded ? 3 : 1})`,
         }}
       />
 

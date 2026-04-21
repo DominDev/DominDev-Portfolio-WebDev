@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { navItems, contactInfo } from "../../data/content";
+import { contactInfo, footerContent, navItems } from "../../data/content";
 import { GithubIcon, MailIcon, ArrowRightIcon } from "../ui/Icons";
 
 function DockLink({ href, children, onClick }) {
@@ -182,7 +182,7 @@ export function Header() {
 
             <div className="mt-auto pb-10">
               <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-600">
-                Damian Dominiak · 2026
+                {footerContent.mobileTagline}
               </p>
             </div>
           </motion.div>
@@ -200,10 +200,10 @@ export function Footer() {
           <span className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-white text-[11px] font-bold text-black">
             DD
           </span>
-          Damian Dominiak
+          {footerContent.signature}
         </div>
         <div className="font-mono text-[11px] uppercase tracking-[0.1em]">
-          © 2026 · Portfolio studenta informatyki
+          {footerContent.tagline}
         </div>
       </div>
     </footer>

@@ -5,7 +5,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { aboutSection, principles } from "../../data/content";
+import { aboutSection, approachSection, principles } from "../../data/content";
 import personImage from "../../assets/images/person-1.png";
 import { PrimaryButton, GhostButton } from "../ui/Button";
 import { ArrowRightIcon } from "../ui/Icons";
@@ -152,7 +152,7 @@ export function Approach() {
         variants={fadeUp}
         transition={{ duration: 0.5 }}
       >
-        <SectionHeader eyebrow="02 · Podejście" title="Zasady, od których nie odchodzę." />
+        <SectionHeader eyebrow={approachSection.eyebrow} title={approachSection.title} />
       </motion.div>
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-12 lg:auto-rows-[minmax(240px,auto)]">

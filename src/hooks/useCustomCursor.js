@@ -19,6 +19,11 @@ export function useCustomCursor() {
     const handleMove = (event) => {
       setCursorVisible(true);
       setCursorPosition({ x: event.clientX, y: event.clientY });
+      const interactiveTarget =
+        event.target instanceof Element
+          ? event.target.closest("a, button, [data-cursor='hover']")
+          : null;
+      setCursorExpanded(Boolean(interactiveTarget));
     };
 
     const handleLeaveDocument = (event) => {
@@ -28,32 +33,12 @@ export function useCustomCursor() {
       }
     };
 
-    const handlePointerOver = (event) => {
-      const target =
-        event.target instanceof Element
-          ? event.target.closest("a, button, [data-cursor='hover']")
-          : null;
-      if (target) setCursorExpanded(true);
-    };
-
-    const handlePointerOut = (event) => {
-      const target =
-        event.target instanceof Element
-          ? event.target.closest("a, button, [data-cursor='hover']")
-          : null;
-      if (target) setCursorExpanded(false);
-    };
-
     window.addEventListener("mousemove", handleMove, { passive: true });
     document.addEventListener("mouseout", handleLeaveDocument);
-    document.addEventListener("pointerover", handlePointerOver);
-    document.addEventListener("pointerout", handlePointerOut);
 
     return () => {
       window.removeEventListener("mousemove", handleMove);
       document.removeEventListener("mouseout", handleLeaveDocument);
-      document.removeEventListener("pointerover", handlePointerOver);
-      document.removeEventListener("pointerout", handlePointerOut);
     };
   }, []);
 

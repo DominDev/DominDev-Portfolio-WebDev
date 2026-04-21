@@ -11,69 +11,74 @@ export const navItems = [
 ];
 
 export const heroContent = {
-  badge: "Otwarty na współpracę",
+  badge: "OTWARTY NA PROJEKTY",
   titleLead: "Projektuję i wdrażam",
   rotatingWords: [
-    "interfejsy webowe",
     "landing page'e",
-    "aplikacje webowe",
-    "doświadczenia UX",
+    "interfejsy webowe",
+    "wydajne UI",
+    "nowoczesny frontend",
   ],
   description:
-    "Landing page'e i nowoczesne interfejsy nastawione na czytelność, szybkość oraz dobre doświadczenie użytkownika.",
+    "Nowoczesne strony i interfejsy z naciskiem na estetykę, czytelność i płynne działanie.",
   primaryCta: "Zobacz realizacje",
   secondaryCta: "GitHub",
 };
 
 export const aboutSection = {
   eyebrow: "01 · O mnie",
-  titleLead: "Nowoczesny frontend,",
-  titleAccent: "który prowadzi do celu.",
+  titleLead: "Frontend, w którym liczy się",
+  titleAccent: "forma i logika.",
   description:
-    "Landing page'e i interfejsy, które wyglądają premium, działają szybko i jasno prowadzą użytkownika.",
+    "Tworzę landing page'e i interfejsy, które mają wyglądać nowocześnie, działać płynnie i być czytelne dla użytkownika. Łączę techniczne podejście z estetyką, żeby budować projekty, które dobrze się ogląda i dobrze się rozwija.",
   supportingText:
-    "Estetyka. Hierarchia. Dopracowany frontend.",
+    "Estetyka. Czytelność. Techniczne podejście.",
   imageAlt: "Portret w czarnym swetrze na transparentnym tle.",
   primaryCta: "Współpraca",
   secondaryCta: "Zobacz projekty",
   highlights: [
-    { title: "Premium UI", text: "mocny pierwszy ekran" },
-    { title: "UX clarity", text: "jasny kierunek i CTA" },
-    { title: "Performance", text: "lekki, szybki frontend" },
+    { title: "Mocny start", text: "pierwszy ekran ma robić wrażenie" },
+    { title: "Czytelny układ", text: "jasny kierunek i dobra hierarchia" },
+    { title: "Lekki frontend", text: "płynność, responsywność i porządek" },
   ],
   sideCard: {
     eyebrow: "Focus",
-    title: "Nowoczesny frontend",
+    title: "Techniczne podejście",
     description:
       "Estetyka, responsywność i detale, które wzmacniają odbiór zamiast go rozpraszać.",
-    chips: ["React", "Tailwind", "Framer Motion"],
-    note: "Frontend, UX i performance w jednym flow.",
+    chips: ["React", "TypeScript", "Tailwind", "Framer Motion"],
+    note: "Estetyka. Czytelność. Techniczne podejście.",
   },
+};
+
+export const approachSection = {
+  eyebrow: "02 · Podejście",
+  title: "Zasady, od których nie odchodzę.",
 };
 
 export const principles = [
   {
     number: "P/01",
     title: "Progressive Enhancement",
-    text: "Strona działa bez JavaScript. Każda warstwa opcjonalna.",
+    text: "Dobra baza, potem dodatkowe warstwy. Efekty nie mogą zastępować fundamentu.",
     iconName: "LayersIcon",
   },
   {
     number: "P/02",
     title: "WCAG 2.2 AA",
-    text: "Dostępność to stan domyślny, nie funkcja dodatkowa.",
+    text: "Dostępność traktuję jako standard, nie opcję dodatkową.",
     iconName: "EyeIcon",
   },
   {
     number: "P/03",
     title: "Mierzalna wydajność",
-    text: "LCP < 1.5s, INP < 200ms, CLS < 0.1. Minimum, nie cel.",
+    text: "Szybkość i responsywność to element projektu, nie końcowa poprawka.",
     iconName: "PulseIcon",
   },
   {
     number: "P/04",
     title: "Zero długu technicznego",
-    text: "Refaktor w roadmapie, nie w ukrytym backlogu.",
+    text: "Czysty kod od pierwszego commitu. Skalowalna struktura zamiast szybkich hacków.",
     iconName: "CodeIcon",
   },
 ];
@@ -82,12 +87,12 @@ export const architectureMap = {
   eyebrow: "03 · Architektura",
   title: "Jak układam projekt.",
   description:
-    "Jedna mapa zamiast kolejnego gridu: od warstwy produktu do zaplecza, workflow i jakości wykonania.",
+    "Od warstwy wizualnej po logikę działania i jakość wykonania.",
   root: {
     eyebrow: "Core / Web Experience",
     title: "Product Surface",
     description:
-      "To tutaj spotykają się komunikat, interfejs i jakość odbioru. Pozostałe warstwy wspierają ten efekt, a nie konkurują z nim.",
+      "Tu spotykają się komunikat, interfejs i odbiór całości. Reszta warstw ma ten efekt wspierać.",
   },
   branches: [
     {
@@ -102,14 +107,14 @@ export const architectureMap = {
       title: "Backend",
       iconName: "DatabaseIcon",
       summary: "API, logika aplikacji i dane potrzebne do działania produktu.",
-      chips: ["Node.js", "API", "Bazy danych", "Integracje"],
+      chips: ["Node.js", "REST API", "PostgreSQL", "Integracje"],
     },
     {
       layer: "Layer / 03",
       title: "Workflow",
       iconName: "CloudIcon",
       summary: "Sposób pracy, iteracje i droga od pomysłu do wdrożenia.",
-      chips: ["GitHub", "Wersjonowanie", "Deploy", "Iteracyjna praca"],
+      chips: ["GitHub", "Wersjonowanie", "Deploy", "CI/CD"],
     },
     {
       layer: "Layer / 04",
@@ -121,16 +126,23 @@ export const architectureMap = {
   ],
 };
 
+export const workSection = {
+  eyebrow: "04 · Realizacje",
+  title: "Projekty pokazujące kierunek i sposób myślenia.",
+  description:
+    "Projekty, w których forma idzie w parze z logiką.",
+};
+
 export const workItems = [
   {
     number: "Case 01",
     year: "2026",
     title: "Nowoczesny landing page dla lokalnej marki.",
-    text: "Sekcja demonstracyjna pokazująca, jak może wyglądać przyszłe wdrożenie: mocny hero, jasna oferta, czytelny CTA i nacisk na estetykę premium.",
+    text: "Koncepcja landing page'a nastawionego na mocny hero, czytelną ofertę i prosty układ prowadzący użytkownika do działania.",
     metrics: [
-      { value: "UI", label: "czytelne" },
-      { value: "SEO", label: "podstawy" },
-      { value: "UX", label: "przemyślany" },
+      { value: "Układ", label: "czytelny" },
+      { value: "Styl", label: "nowoczesny" },
+      { value: "CTA", label: "widoczne" },
     ],
     tags: ["Landing page", "Frontend", "Konwersja"],
   },
@@ -138,15 +150,23 @@ export const workItems = [
     number: "Case 02",
     year: "2026",
     title: "Projekt aplikacji webowej w rozwoju.",
-    text: "Miejsce na projekt pokazujący więcej niż sam wygląd: strukturę widoków, logikę interfejsu, komponentowe podejście i rozwój w stronę fullstacku.",
+    text: "Koncepcja aplikacji webowej pokazująca strukturę widoków, podejście komponentowe i kierunek rozwoju w stronę fullstacku.",
     metrics: [
-      { value: "Code", label: "clean" },
+      { value: "Code", label: "czysty" },
       { value: "Flow", label: "spójny" },
-      { value: "Stack", label: "rosnący" },
+      { value: "System", label: "rozwijalny" },
     ],
     tags: ["Web app", "Fullstack", "Architektura"],
   },
 ];
+
+export const contactSection = {
+  eyebrow: "05 · Kontakt",
+  titleLead: "Masz pomysł",
+  titleAccent: "na projekt?",
+  description:
+    "Możesz napisać w sprawie projektu, współpracy albo po prostu kontaktu.",
+};
 
 export const contactInfo = {
   email: "contact@example.com",
@@ -155,4 +175,10 @@ export const contactInfo = {
     { label: "LinkedIn", href: "#", icon: "external" },
     { label: "CV (PDF)", href: "#", icon: "external" },
   ],
+};
+
+export const footerContent = {
+  signature: "Damian Dominiak",
+  tagline: "© 2026 · Portfolio / Frontend / UI",
+  mobileTagline: "Damian Dominiak · Frontend / UI",
 };

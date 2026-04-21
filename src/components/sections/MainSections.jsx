@@ -1,13 +1,20 @@
 /**
- * sections/Architecture.jsx
- * Prezentacja stosu technologicznego w układzie Bento Grid.
+ * Main sections below the About/Approach area.
  */
 
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { architectureMap } from "../../data/content";
-import { SectionHeader } from "../ui/Cards";
+import {
+  architectureMap,
+  contactInfo,
+  contactSection,
+  workItems,
+  workSection,
+} from "../../data/content";
+import { DotGridCanvas, MeshBackground } from "../effects/Backgrounds";
 import * as Icons from "../ui/Icons";
+import { SectionHeader, SurfaceCard } from "../ui/Cards";
+import { MockupChart, MockupTopology } from "../ui/Mockups";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -28,15 +35,16 @@ const hoverSpring = {
   mass: 0.7,
 };
 
+function setGlowPosition(event) {
+  const element = event.currentTarget;
+  const rect = element.getBoundingClientRect();
+  element.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+  element.style.setProperty("--my", `${event.clientY - rect.top}px`);
+}
+
 export function Architecture() {
   const shouldReduceMotion = useReducedMotion();
   const rootHover = shouldReduceMotion ? undefined : { y: -10, scale: 1.015 };
-  const handleGlowMove = (event) => {
-    const element = event.currentTarget;
-    const rect = element.getBoundingClientRect();
-    element.style.setProperty("--mx", `${event.clientX - rect.left}px`);
-    element.style.setProperty("--my", `${event.clientY - rect.top}px`);
-  };
 
   return (
     <section id="architecture" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-10">
@@ -69,7 +77,7 @@ export function Architecture() {
             <motion.div
               whileHover={rootHover}
               transition={hoverSpring}
-              onPointerMove={handleGlowMove}
+              onPointerMove={setGlowPosition}
               className="glow-card rounded-[24px] border border-white/10 bg-white/[0.04] px-6 py-6 text-center shadow-[0_10px_30px_-20px_rgba(0,0,0,0.7)] transition-[border-color,background-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-white/18 hover:bg-white/[0.06] hover:shadow-[0_26px_70px_-24px_rgba(255,255,255,0.12)] sm:px-8 sm:py-8"
             >
               <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-zinc-500">
@@ -107,13 +115,14 @@ export function Architecture() {
                   <motion.div
                     whileHover={branchHover}
                     transition={hoverSpring}
-                    onPointerMove={handleGlowMove}
+                    onPointerMove={setGlowPosition}
                     className="glow-card group relative overflow-hidden rounded-[24px] border border-white/10 bg-black/40 p-5 shadow-[0_10px_24px_-18px_rgba(0,0,0,0.9)] transition-[border-color,background-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-white/22 hover:bg-black/55 hover:shadow-[0_30px_90px_-28px_rgba(255,255,255,0.18)] sm:p-6"
                   >
                     <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
                       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_55%)]" />
                     </div>
                     <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/16 to-transparent transition group-hover:via-white/28 group-focus-within:via-white/28" />
+
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <span className="block font-mono text-[10px] uppercase tracking-[0.22em] text-zinc-500">
@@ -152,22 +161,7 @@ export function Architecture() {
   );
 }
 
-/**
- * sections/Work.jsx
- * Prezentacja projektów jako case studies z metrykami i mockupami.
- */
-import { workItems } from "../../data/content";
-import { SurfaceCard } from "../ui/Cards";
-import { MockupChart, MockupTopology } from "../ui/Mockups";
-
 export function Work() {
-  const handleGlowMove = (event) => {
-    const element = event.currentTarget;
-    const rect = element.getBoundingClientRect();
-    element.style.setProperty("--mx", `${event.clientX - rect.left}px`);
-    element.style.setProperty("--my", `${event.clientY - rect.top}px`);
-  };
-
   return (
     <section id="work" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-10">
       <motion.div
@@ -178,9 +172,9 @@ export function Work() {
         transition={{ duration: 0.5 }}
       >
         <SectionHeader
-          eyebrow="04 · Realizacje"
-          title="Case studies zamiast zwykłych kart."
-          description="Sekcja wygląda dojrzalej, bardziej ekspercko i daje miejsce na metryki oraz mockupy."
+          eyebrow={workSection.eyebrow}
+          title={workSection.title}
+          description={workSection.description}
         />
       </motion.div>
 
@@ -198,7 +192,7 @@ export function Work() {
               <SurfaceCard
                 glow
                 className="overflow-hidden border-white/15 bg-[#0a0a0a] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.8)]"
-                onPointerMove={handleGlowMove}
+                onPointerMove={setGlowPosition}
               >
                 <div className="flex items-center gap-3 border-b border-white/10 bg-white/[0.02] px-4 py-3">
                   <div className="flex gap-1.5">
@@ -229,20 +223,31 @@ export function Work() {
               </p>
 
               <div className="mt-6 grid overflow-hidden rounded-[18px] border border-white/10 bg-white/[0.03] sm:grid-cols-3">
-                {item.metrics.map((metric, mIdx) => (
+                {item.metrics.map((metric, metricIndex) => (
                   <div
                     key={metric.label}
-                    className={`bg-black/60 p-5 ${mIdx < item.metrics.length - 1 ? "border-b border-r border-white/10 sm:border-b-0" : ""}`}
+                    className={`bg-black/60 p-5 ${
+                      metricIndex < item.metrics.length - 1
+                        ? "border-b border-r border-white/10 sm:border-b-0"
+                        : ""
+                    }`}
                   >
-                    <div className="text-3xl font-semibold tracking-[-0.03em] text-white">{metric.value}</div>
-                    <div className="muted-label mt-2 font-mono text-[11px] uppercase tracking-[0.1em]">{metric.label}</div>
+                    <div className="text-3xl font-semibold tracking-[-0.03em] text-white">
+                      {metric.value}
+                    </div>
+                    <div className="muted-label mt-2 font-mono text-[11px] uppercase tracking-[0.1em]">
+                      {metric.label}
+                    </div>
                   </div>
                 ))}
               </div>
 
               <div className="mt-5 flex flex-wrap gap-2">
                 {item.tags.map((tag) => (
-                  <span key={tag} className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 font-mono text-[11px] text-zinc-200">
+                  <span
+                    key={tag}
+                    className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 font-mono text-[11px] text-zinc-200"
+                  >
                     {tag}
                   </span>
                 ))}
@@ -254,13 +259,6 @@ export function Work() {
     </section>
   );
 }
-
-/**
- * sections/Contact.jsx
- * Sekcja kontaktowa z tłem Mesh i linkami społecznościowymi.
- */
-import { contactInfo } from "../../data/content";
-import { DotGridCanvas, MeshBackground } from "../effects/Backgrounds";
 
 export function Contact() {
   return (
@@ -278,25 +276,34 @@ export function Contact() {
           transition={{ duration: 0.5 }}
         >
           <div className="mx-auto inline-block border-b border-white/10 pb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-500">
-            05 · Kontakt
+            {contactSection.eyebrow}
           </div>
-          <h2 className="mt-5 text-4xl font-semibold tracking-[-0.04em] text-white sm:text-6xl text-balance">
-            Porozmawiajmy <br />
-            <span className="font-medium text-zinc-500">o Twoim projekcie.</span>
+          <h2 className="mt-5 text-4xl font-semibold tracking-[-0.04em] text-white text-balance sm:text-6xl">
+            {contactSection.titleLead}
+            <br />
+            <span className="font-medium text-zinc-500">{contactSection.titleAccent}</span>
           </h2>
+          <p className="muted-copy mx-auto mt-5 max-w-[32rem] text-sm leading-7 sm:text-base">
+            {contactSection.description}
+          </p>
 
           <a
             href={`mailto:${contactInfo.email}`}
-            className="mx-auto mt-10 inline-flex min-h-[56px] max-w-full items-center gap-3 overflow-hidden rounded-full border border-white/15 bg-white/[0.04] px-6 py-4 text-lg font-medium text-white transition hover:-translate-y-0.5 hover:border-white hover:bg-white/[0.08] focus-visible:border-white focus-visible:bg-white/[0.08]"
+            className="mx-auto mt-10 inline-flex min-h-[58px] max-w-full items-center gap-3 overflow-hidden rounded-full border border-white/20 bg-white/[0.09] px-6 py-4 text-lg font-medium text-white shadow-[0_18px_50px_-24px_rgba(255,255,255,0.2)] transition hover:-translate-y-0.5 hover:border-white hover:bg-white/[0.14] hover:shadow-[0_24px_70px_-26px_rgba(255,255,255,0.28)] focus-visible:border-white focus-visible:bg-white/[0.14] sm:px-7"
           >
             <span className="truncate">{contactInfo.email}</span>
             <Icons.ArrowRightIcon className="h-5 w-5 shrink-0" />
           </a>
 
-          <div className="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm">
-            {contactInfo.socials.map(link => (
-              <a key={link.label} href={link.href} className="muted-link flex min-h-[44px] items-center transition">
-                {link.label} ↗
+          <div className="mt-10 flex flex-wrap justify-center gap-3 text-sm">
+            {contactInfo.socials.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="inline-flex min-h-[46px] items-center gap-2 rounded-full border border-white/12 bg-white/[0.05] px-4 py-2.5 text-zinc-100 transition hover:-translate-y-0.5 hover:border-white/22 hover:bg-white/[0.09] hover:text-white focus-visible:border-white/30 focus-visible:bg-white/[0.09] focus-visible:text-white"
+              >
+                <span>{link.label}</span>
+                <Icons.ExternalLinkIcon className="h-4 w-4 shrink-0 text-zinc-300" />
               </a>
             ))}
           </div>
