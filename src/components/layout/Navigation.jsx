@@ -6,7 +6,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { contactInfo, footerContent, navItems } from "../../data/content";
-import logoWhite from "../../assets/icons/logo-white-2.png";
+import logoWhite from "../../assets/icons/logo-white.png";
 import { GithubIcon, MailIcon, ArrowRightIcon } from "../ui/Icons";
 
 function DockLink({ href, children, onClick }) {
