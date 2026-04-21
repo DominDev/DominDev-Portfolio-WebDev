@@ -13,7 +13,7 @@ function DockLink({ href, children, onClick }) {
     <a
       href={href}
       onClick={onClick}
-      className="flex min-h-[44px] items-center rounded-full px-4 text-sm text-zinc-500 transition hover:bg-white/5 hover:text-white"
+      className="muted-link flex min-h-[44px] items-center rounded-full px-4 text-sm transition hover:bg-white/5 focus-visible:bg-white/5 lg:min-h-[50px] lg:px-5 lg:text-base"
     >
       {children}
     </a>
@@ -37,17 +37,17 @@ export function Header() {
 
   return (
     <>
-      <header className="fixed left-1/2 top-5 z-[100] w-[calc(100%-1.5rem)] max-w-4xl -translate-x-1/2">
-        <div className="flex items-center justify-between gap-5 rounded-full border border-white/10 bg-black/60 px-5 py-2 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+      <header className="fixed left-1/2 top-5 z-[100] w-[calc(100%-1.5rem)] max-w-4xl -translate-x-1/2 lg:top-6 lg:max-w-5xl">
+        <div className="flex items-center justify-between gap-5 rounded-full border border-white/10 bg-black/60 px-5 py-2 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] lg:px-6 lg:py-3">
           <a
             href="#top"
             onClick={closeMenu}
-            className="inline-flex min-h-[44px] items-center gap-2 whitespace-nowrap font-medium text-white"
+            className="inline-flex min-h-[44px] items-center gap-2 whitespace-nowrap rounded-full font-medium text-white lg:min-h-[50px] lg:gap-3"
           >
-            <span className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-white text-[11px] font-bold text-black">
+            <span className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-white text-[11px] font-bold text-black lg:h-7 lg:w-7 lg:rounded-lg lg:text-xs">
               DD
             </span>
-            <span className="hidden xs:inline">Dominiak</span>
+            <span className="hidden xs:inline lg:text-base">Dominiak</span>
           </a>
 
           {/* Desktop Nav */}
@@ -63,7 +63,7 @@ export function Header() {
             <a
               href="#contact"
               onClick={closeMenu}
-              className="hidden items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:-translate-y-0.5 hover:bg-zinc-200 sm:inline-flex"
+              className="hidden items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:-translate-y-0.5 hover:bg-zinc-200 focus-visible:border-white focus-visible:bg-zinc-100 sm:inline-flex lg:min-h-[50px] lg:px-6 lg:text-base"
             >
               Kontakt
             </a>
@@ -72,7 +72,7 @@ export function Header() {
             <button
               onClick={toggleMenu}
               aria-label={isMenuOpen ? "Zamknij menu" : "Otwórz menu"}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white sm:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition hover:bg-white/10 focus-visible:border-white/40 focus-visible:bg-white/10 sm:hidden"
             >
               <div className="relative h-4 w-5">
                 <span
@@ -115,7 +115,7 @@ export function Header() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.05 }}
-                  className="text-4xl font-semibold tracking-tight text-white transition hover:text-zinc-400"
+                  className="text-4xl font-semibold tracking-tight text-white transition hover:text-zinc-300 focus-visible:text-zinc-300"
                 >
                   {item.label}
                 </motion.a>
@@ -126,7 +126,7 @@ export function Header() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: navItems.length * 0.05 }}
-                className="mt-4 text-4xl font-semibold tracking-tight text-white/40 transition hover:text-white"
+                className="mt-4 text-4xl font-semibold tracking-tight text-white/60 transition hover:text-white focus-visible:text-white"
               >
                 Kontakt
               </motion.a>
@@ -144,13 +144,13 @@ export function Header() {
               <div className="grid grid-cols-1 gap-3">
                 <a 
                   href={`mailto:${contactInfo.email}`}
-                  className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-white transition hover:bg-white/10"
+                  className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-white transition hover:bg-white/10 focus-visible:border-white/35 focus-visible:bg-white/10"
                 >
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-black">
                     <MailIcon className="h-5 w-5" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-[10px] uppercase tracking-wider text-zinc-500">Napisz wiadomość</span>
+                    <span className="muted-label text-[10px] uppercase tracking-wider">Napisz wiadomość</span>
                     <span className="font-medium">{contactInfo.email}</span>
                   </div>
                 </a>
@@ -160,7 +160,7 @@ export function Header() {
                     href={contactInfo.socials.find(s => s.label === "GitHub")?.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 p-4 text-white transition hover:bg-white/10"
+                    className="flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 p-4 text-white transition hover:bg-white/10 focus-visible:border-white/35 focus-visible:bg-white/10"
                   >
                     <GithubIcon className="h-5 w-5" />
                     <span className="font-medium">GitHub</span>
@@ -169,7 +169,7 @@ export function Header() {
                     href={contactInfo.socials.find(s => s.label === "LinkedIn")?.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 p-4 text-white transition hover:bg-white/10"
+                    className="flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 p-4 text-white transition hover:bg-white/10 focus-visible:border-white/35 focus-visible:bg-white/10"
                   >
                     <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
                       <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />

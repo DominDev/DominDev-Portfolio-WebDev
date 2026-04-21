@@ -18,6 +18,17 @@
   }
 }
 
+a,
+button {
+  outline: none;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid rgba(255,255,255,0.92);
+  outline-offset: 3px;
+}
+
 html {
   scrollbar-width: thin;
   scrollbar-color: rgba(255,255,255,0.18) #000000;
@@ -32,6 +43,23 @@ body {
 /* Typography Helper */
 .text-balance {
   text-wrap: balance;
+}
+
+.muted-copy {
+  color: rgb(196 196 205 / 0.88);
+}
+
+.muted-label {
+  color: rgb(148 163 184 / 0.78);
+}
+
+.muted-link {
+  color: rgb(212 212 216 / 0.8);
+}
+
+.muted-link:hover,
+.muted-link:focus-visible {
+  color: rgb(255 255 255 / 1);
 }
 
 /* Scrollbar Customization */
@@ -142,5 +170,9 @@ body::-webkit-scrollbar-thumb:hover {
   .hero-mesh-orb, .hero-typed-caret, .glow-card::before, .glow-card::after {
     animation: none !important;
     transition: none !important;
+  }
+
+  html {
+    scroll-behavior: auto;
   }
 }

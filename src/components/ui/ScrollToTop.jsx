@@ -25,8 +25,8 @@ export function ScrollToTop() {
   return (
     <button
       onClick={scrollToTop}
-      aria-label="Scroll to top"
-      className="fixed bottom-6 right-6 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white shadow-lg backdrop-blur-md transition hover:-translate-y-1 hover:bg-white/20"
+      aria-label="Wróć na górę"
+      className="fixed bottom-6 right-6 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/25 bg-white/12 text-white shadow-lg backdrop-blur-md transition hover:-translate-y-1 hover:bg-white/20 focus-visible:border-white focus-visible:bg-white/20"
     >
       <svg
         viewBox="0 0 24 24"
