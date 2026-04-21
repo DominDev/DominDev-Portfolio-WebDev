@@ -1,13 +1,16 @@
 /**
- * sections/About.jsx
- * Sekcja "O mnie" prezentująca sylwetkę i kluczowe kompetencje.
+ * sections/AboutApproach.jsx
+ * About and Approach sections.
  */
 
 import React from "react";
 import { motion } from "framer-motion";
+import { aboutSection, principles } from "../../data/content";
 import { PrimaryButton, GhostButton } from "../ui/Button";
 import { ArrowRightIcon } from "../ui/Icons";
 import { MeshBackground } from "../effects/Backgrounds";
+import { SurfaceCard, SectionHeader } from "../ui/Cards";
+import * as Icons from "../ui/Icons";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -15,6 +18,13 @@ const fadeUp = {
 };
 
 export function About() {
+  const handleGlowMove = (event) => {
+    const element = event.currentTarget;
+    const rect = element.getBoundingClientRect();
+    element.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+    element.style.setProperty("--my", `${event.clientY - rect.top}px`);
+  };
+
   return (
     <section
       id="about"
@@ -23,7 +33,7 @@ export function About() {
       <MeshBackground />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.7)_90%)]" />
 
-      <div className="relative z-[3] mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
+      <div className="relative z-[3] mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -32,39 +42,41 @@ export function About() {
           transition={{ duration: 0.5 }}
         >
           <div className="mb-4 inline-block border-b border-white/10 pb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-500">
-            01 · O mnie
+            {aboutSection.eyebrow}
           </div>
           <h2 className="text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
-            Tworzę rzeczy, które
+            {aboutSection.titleLead}
             <br />
-            <span className="text-zinc-400">mają sens i działają.</span>
+            <span className="text-zinc-400">{aboutSection.titleAccent}</span>
           </h2>
 
           <p className="mt-6 max-w-[48ch] text-lg leading-8 text-zinc-300">
-            Jestem studentem informatyki, który projektuje i koduje
-            nowoczesne doświadczenia webowe — od estetycznych landing page'y
-            po interfejsy nastawione na czytelność, szybkość i konwersję.
+            {aboutSection.description}
+          </p>
+          <p className="muted-copy mt-5 max-w-[52ch] text-base leading-7 sm:text-[17px] sm:leading-8">
+            {aboutSection.supportingText}
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
             <PrimaryButton as="a" href="#contact">
-              Współpraca
+              {aboutSection.primaryCta}
               <ArrowRightIcon className="h-4 w-4" />
             </PrimaryButton>
             <GhostButton as="a" href="#work">
-              Zobacz projekty
+              {aboutSection.secondaryCta}
             </GhostButton>
           </div>
 
-          <div className="mt-10 grid grid-cols-2 gap-6 text-sm text-zinc-400 sm:max-w-md">
-            <div>
-              <div className="text-2xl font-semibold text-white">Frontend</div>
-              <div>UI, UX, React</div>
-            </div>
-            <div>
-              <div className="text-2xl font-semibold text-white">Performance</div>
-              <div>Szybkość, SEO</div>
-            </div>
+          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            {aboutSection.highlights.map((item) => (
+              <div
+                key={item.title}
+                className="rounded-[20px] border border-white/10 bg-white/[0.03] px-5 py-5"
+              >
+                <div className="text-xl font-semibold text-white">{item.title}</div>
+                <div className="muted-copy mt-2 text-sm leading-6">{item.text}</div>
+              </div>
+            ))}
           </div>
         </motion.div>
 
@@ -76,26 +88,59 @@ export function About() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="relative"
         >
-          <div className="glow-card relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.03] p-2">
-            <div className="aspect-[4/5] w-full overflow-hidden rounded-[22px] bg-gradient-to-br from-zinc-800 via-zinc-900 to-black flex items-center justify-center">
-              <span className="font-mono text-xs text-zinc-500">
-                [ Twoje zdjęcie ]
-              </span>
+          <SurfaceCard
+            glow
+            onPointerMove={handleGlowMove}
+            className="rounded-[28px] border-white/12 bg-white/[0.04] p-7 sm:p-8"
+          >
+            <div className="flex h-full flex-col gap-6">
+              <div>
+                <div className="mb-4 inline-block border-b border-white/10 pb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-500">
+                  {aboutSection.sideCard.eyebrow}
+                </div>
+                <h3 className="max-w-[14ch] text-3xl font-semibold tracking-[-0.04em] text-white sm:text-[2.35rem]">
+                  {aboutSection.sideCard.title}
+                </h3>
+                <p className="muted-copy mt-5 max-w-[42ch] text-sm leading-7 sm:text-[15px]">
+                  {aboutSection.sideCard.description}
+                </p>
+              </div>
+
+              <div className="grid gap-3">
+                {aboutSection.sideCard.points.map((point, index) => (
+                  <div
+                    key={point}
+                    className="flex items-start gap-4 rounded-[20px] border border-white/10 bg-black/30 px-4 py-4"
+                  >
+                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] font-mono text-[11px] text-white">
+                      0{index + 1}
+                    </span>
+                    <p className="text-sm leading-7 text-zinc-200">{point}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-2 pt-1">
+                {aboutSection.sideCard.chips.map((chip) => (
+                  <span
+                    key={chip}
+                    className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 font-mono text-[11px] text-zinc-200"
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
+
+              <p className="muted-copy border-t border-white/10 pt-5 text-sm leading-7">
+                {aboutSection.sideCard.note}
+              </p>
             </div>
-          </div>
+          </SurfaceCard>
         </motion.div>
       </div>
     </section>
   );
 }
-
-/**
- * sections/Approach.jsx
- * Sekcja prezentująca zasady i filozofię pracy.
- */
-import { principles } from "../../data/content";
-import { SectionHeader } from "../ui/Cards";
-import * as Icons from "../ui/Icons";
 
 export function Approach() {
   const handleGlowMove = (event) => {
@@ -121,9 +166,13 @@ export function Approach() {
         {principles.map((item, index) => {
           const Icon = Icons[item.iconName] || Icons.CodeIcon;
           const layoutClass =
-            index === 0 ? "lg:col-span-7" : 
-            index === 1 ? "lg:col-span-5" : 
-            index === 2 ? "lg:col-span-5" : "lg:col-span-7";
+            index === 0
+              ? "lg:col-span-7"
+              : index === 1
+                ? "lg:col-span-5"
+                : index === 2
+                  ? "lg:col-span-5"
+                  : "lg:col-span-7";
 
           return (
             <motion.article

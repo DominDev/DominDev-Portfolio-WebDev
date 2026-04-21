@@ -25,6 +25,36 @@ export const heroContent = {
   secondaryCta: "GitHub",
 };
 
+export const aboutSection = {
+  eyebrow: "01 · O mnie",
+  titleLead: "Buduję strony i interfejsy,",
+  titleAccent: "które mają sens biznesowo.",
+  description:
+    "Jestem studentem informatyki, który łączy estetykę z czytelnością, wydajnością i dopracowanym frontendem.",
+  supportingText:
+    "Najlepiej czuję się przy landing page'ach i nowoczesnych interfejsach, gdzie liczy się pierwsze wrażenie, mocna hierarchia treści i płynne doświadczenie użytkownika.",
+  primaryCta: "Współpraca",
+  secondaryCta: "Zobacz projekty",
+  highlights: [
+    { title: "Frontend", text: "React, komponenty, UI" },
+    { title: "UX clarity", text: "Hierarchia, flow, CTA" },
+    { title: "Performance", text: "Szybkość, SEO basics" },
+  ],
+  sideCard: {
+    eyebrow: "Jak pracuję",
+    title: "Od pierwszego ekranu do sensownego wdrożenia.",
+    description:
+      "Skupiam się na jasnym przekazie, dopracowanym układzie sekcji i detalach interakcji, które wspierają odbiór zamiast odciągać uwagę.",
+    points: [
+      "Mocny hero i czytelne prowadzenie użytkownika",
+      "Responsywny interfejs bez zbędnego chaosu",
+      "Detale wizualne, które wzmacniają jakość wykonania",
+    ],
+    chips: ["React", "Tailwind", "Framer Motion", "Responsive UI"],
+    note: "Aktualnie rozwijam się w stronę coraz pełniejszych wdrożeń webowych.",
+  },
+};
+
 export const principles = [
   {
     number: "P/01",
@@ -52,59 +82,48 @@ export const principles = [
   },
 ];
 
-export const architectureCards = [
-  {
-    layer: "Layer / 01",
-    title: "Frontend",
-    iconName: "MonitorIcon",
-    className: "lg:col-span-7 lg:row-span-2",
-    chips: [
-      "HTML5",
-      "CSS3",
-      "JavaScript",
-      "TypeScript",
-      "React",
-      "Next.js",
-      "Tailwind",
-      "UI / UX",
-    ],
+export const architectureMap = {
+  eyebrow: "03 · Architektura",
+  title: "Jak układam projekt.",
+  description:
+    "Jedna mapa zamiast kolejnego gridu: od warstwy produktu do zaplecza, workflow i jakości wykonania.",
+  root: {
+    eyebrow: "Core / Web Experience",
+    title: "Product Surface",
+    description:
+      "To tutaj spotykają się komunikat, interfejs i jakość odbioru. Pozostałe warstwy wspierają ten efekt, a nie konkurują z nim.",
   },
-  {
-    layer: "Layer / 02",
-    title: "Backend",
-    iconName: "DatabaseIcon",
-    className: "lg:col-span-5",
-    chips: ["Node.js", "API", "Bazy danych", "Logika aplikacji", "Integracje"],
-  },
-  {
-    layer: "Layer / 03",
-    title: "Dev workflow",
-    iconName: "CloudIcon",
-    className: "lg:col-span-5",
-    chips: [
-      "GitHub",
-      "Repozytoria",
-      "Wersjonowanie",
-      "Deploy",
-      "Iteracyjna praca",
-    ],
-  },
-  {
-    layer: "Layer / 04",
-    title: "Tooling i jakość",
-    iconName: "CodeIcon",
-    className: "lg:col-span-12",
-    chips: [
-      "Czytelny kod",
-      "Komponentowość",
-      "Responsywność",
-      "SEO basics",
-      "Performance thinking",
-      "Figma",
-      "WordPress",
-    ],
-  },
-];
+  branches: [
+    {
+      layer: "Layer / 01",
+      title: "Frontend",
+      iconName: "MonitorIcon",
+      summary: "Interfejs, komponenty i doświadczenie użytkownika.",
+      chips: ["React", "Next.js", "Tailwind", "UI / UX"],
+    },
+    {
+      layer: "Layer / 02",
+      title: "Backend",
+      iconName: "DatabaseIcon",
+      summary: "API, logika aplikacji i dane potrzebne do działania produktu.",
+      chips: ["Node.js", "API", "Bazy danych", "Integracje"],
+    },
+    {
+      layer: "Layer / 03",
+      title: "Workflow",
+      iconName: "CloudIcon",
+      summary: "Sposób pracy, iteracje i droga od pomysłu do wdrożenia.",
+      chips: ["GitHub", "Wersjonowanie", "Deploy", "Iteracyjna praca"],
+    },
+    {
+      layer: "Layer / 04",
+      title: "Quality",
+      iconName: "CodeIcon",
+      summary: "Czytelność kodu, responsywność i dbałość o końcowy odbiór.",
+      chips: ["Czytelny kod", "Responsywność", "SEO basics", "Performance"],
+    },
+  ],
+};
 
 export const workItems = [
   {

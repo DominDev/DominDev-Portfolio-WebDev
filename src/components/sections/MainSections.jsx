@@ -4,8 +4,8 @@
  */
 
 import React from "react";
-import { motion } from "framer-motion";
-import { architectureCards } from "../../data/content";
+import { motion, useReducedMotion } from "framer-motion";
+import { architectureMap } from "../../data/content";
 import { SectionHeader } from "../ui/Cards";
 import * as Icons from "../ui/Icons";
 
@@ -14,7 +14,23 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
+const branchHoverOffsets = [
+  { x: -12, y: -12, scale: 1.025 },
+  { x: 12, y: -12, scale: 1.025 },
+  { x: -12, y: 8, scale: 1.025 },
+  { x: 12, y: 8, scale: 1.025 },
+];
+
+const hoverSpring = {
+  type: "spring",
+  stiffness: 260,
+  damping: 20,
+  mass: 0.7,
+};
+
 export function Architecture() {
+  const shouldReduceMotion = useReducedMotion();
+  const rootHover = shouldReduceMotion ? undefined : { y: -10, scale: 1.015 };
   const handleGlowMove = (event) => {
     const element = event.currentTarget;
     const rect = element.getBoundingClientRect();
@@ -32,56 +48,106 @@ export function Architecture() {
         transition={{ duration: 0.5 }}
       >
         <SectionHeader
-          eyebrow="03 · Architektura"
-          title="Stos, warstwa po warstwie."
-          description="Układ bento grid wzmacnia techniczny charakter portfolio i daje lepsze pole do pokazania stacku niż zwykłe równe karty."
+          eyebrow={architectureMap.eyebrow}
+          title={architectureMap.title}
+          description={architectureMap.description}
         />
       </motion.div>
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-12 lg:auto-rows-[minmax(220px,auto)]">
-        {architectureCards.map((item, index) => {
-          const Icon = Icons[item.iconName] || Icons.CodeIcon;
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.5, delay: 0.06 }}
+        className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#050505] px-5 py-6 sm:px-8 sm:py-8 lg:px-10 lg:py-10"
+      >
+        <div className="pointer-events-none absolute inset-0 opacity-50 [background-image:linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] [background-size:28px_28px]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.07),transparent_45%)]" />
 
-          return (
-            <motion.article
-              key={item.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.45, delay: index * 0.06 }}
+        <div className="relative z-10">
+          <div className="mx-auto max-w-2xl">
+            <motion.div
+              whileHover={rootHover}
+              transition={hoverSpring}
               onPointerMove={handleGlowMove}
-              className={`glow-card group relative overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.03] p-7 transition-transform duration-300 ease-out hover:-translate-y-1 ${item.className}`}
+              className="glow-card rounded-[24px] border border-white/10 bg-white/[0.04] px-6 py-6 text-center shadow-[0_10px_30px_-20px_rgba(0,0,0,0.7)] transition-[border-color,background-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-white/18 hover:bg-white/[0.06] hover:shadow-[0_26px_70px_-24px_rgba(255,255,255,0.12)] sm:px-8 sm:py-8"
             >
-              <div className="relative z-10 flex h-full flex-col gap-5">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <span className="muted-label block font-mono text-[11px] uppercase tracking-[0.12em]">
-                      {item.layer}
-                    </span>
-                    <h3 className="mt-1 text-3xl font-semibold tracking-[-0.04em] text-white">
-                      {item.title}
-                    </h3>
-                  </div>
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-white/[0.05] text-white">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                </div>
-
-                <div className="mt-auto flex flex-wrap gap-2 pt-3">
-                  {item.chips.map((chip) => (
-                    <span
-                      key={chip}
-                      className="rounded-md border border-white/10 bg-white/[0.05] px-3 py-2 font-mono text-[11px] text-zinc-200 transition group-hover:border-white/15 group-hover:text-white"
-                    >
-                      {chip}
-                    </span>
-                  ))}
-                </div>
+              <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-zinc-500">
+                {architectureMap.root.eyebrow}
               </div>
-            </motion.article>
-          );
-        })}
-      </div>
+              <h3 className="mt-4 text-3xl font-semibold tracking-[-0.05em] text-white sm:text-[2.6rem]">
+                {architectureMap.root.title}
+              </h3>
+              <p className="muted-copy mx-auto mt-4 max-w-[42rem] text-sm leading-7 sm:text-[15px]">
+                {architectureMap.root.description}
+              </p>
+            </motion.div>
+          </div>
+
+          <div className="mx-auto mt-6 flex max-w-5xl flex-col items-center">
+            <span className="h-10 w-px bg-gradient-to-b from-white/30 to-white/5" />
+            <span className="h-2.5 w-2.5 rounded-full border border-white/20 bg-black shadow-[0_0_18px_rgba(255,255,255,0.18)]" />
+            <span className="mt-4 hidden h-px w-[76%] bg-gradient-to-r from-transparent via-white/12 to-transparent lg:block" />
+          </div>
+
+          <div className="mt-6 grid gap-4 lg:grid-cols-2">
+            {architectureMap.branches.map((item, index) => {
+              const Icon = Icons[item.iconName] || Icons.CodeIcon;
+              const branchHover = shouldReduceMotion ? undefined : branchHoverOffsets[index];
+
+              return (
+                <motion.article
+                  key={item.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.45, delay: 0.1 + index * 0.05 }}
+                  className="relative"
+                >
+                  <motion.div
+                    whileHover={branchHover}
+                    transition={hoverSpring}
+                    onPointerMove={handleGlowMove}
+                    className="glow-card group relative overflow-hidden rounded-[24px] border border-white/10 bg-black/40 p-5 shadow-[0_10px_24px_-18px_rgba(0,0,0,0.9)] transition-[border-color,background-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-white/22 hover:bg-black/55 hover:shadow-[0_30px_90px_-28px_rgba(255,255,255,0.18)] sm:p-6"
+                  >
+                    <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_55%)]" />
+                    </div>
+                    <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/16 to-transparent transition group-hover:via-white/28 group-focus-within:via-white/28" />
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <span className="block font-mono text-[10px] uppercase tracking-[0.22em] text-zinc-500">
+                          {item.layer}
+                        </span>
+                        <h3 className="mt-3 text-[1.55rem] font-semibold tracking-[-0.04em] text-white sm:text-[1.7rem]">
+                          {item.title}
+                        </h3>
+                        <p className="muted-copy mt-3 max-w-[34ch] text-sm leading-7">
+                          {item.summary}
+                        </p>
+                      </div>
+                      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-white/15 bg-white/[0.04] text-white transition group-hover:border-white/25 group-hover:bg-white/[0.07] group-hover:shadow-[0_0_20px_rgba(255,255,255,0.06)]">
+                        <Icon className="h-5 w-5" />
+                      </span>
+                    </div>
+
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {item.chips.map((chip) => (
+                        <span
+                          key={chip}
+                          className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 font-mono text-[11px] text-zinc-200 transition group-hover:border-white/20 group-hover:bg-white/[0.07] group-hover:text-white"
+                        >
+                          {chip}
+                        </span>
+                      ))}
+                    </div>
+                  </motion.div>
+                </motion.article>
+              );
+            })}
+          </div>
+        </div>
+      </motion.div>
     </section>
   );
 }
