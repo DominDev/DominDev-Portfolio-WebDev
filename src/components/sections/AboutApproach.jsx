@@ -6,7 +6,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { aboutSection, approachSection, principles } from "../../data/content";
-import personImage from "../../assets/images/person-1.png";
+import personImage from "../../assets/images/person-damian-mono.png";
 import { PrimaryButton, GhostButton } from "../ui/Button";
 import { ArrowRightIcon } from "../ui/Icons";
 import { MeshBackground } from "../effects/Backgrounds";
@@ -59,7 +59,9 @@ export function About() {
                   <h2 className="text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
                     {aboutSection.titleLead}
                     <br />
-                    <span className="text-zinc-400">{aboutSection.titleAccent}</span>
+                    <span className="text-zinc-400">
+                      {aboutSection.titleAccent}
+                    </span>
                   </h2>
 
                   <p className="mt-6 max-w-[48ch] text-lg leading-8 text-zinc-300">
@@ -75,8 +77,12 @@ export function About() {
                         key={item.title}
                         className="origin-bottom-left transform-gpu rounded-[20px] border border-white/10 bg-white/[0.03] px-4 py-4 transition-[transform,border-color,box-shadow,background-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-white/18 hover:bg-white/[0.045] hover:shadow-[0_24px_50px_-28px_rgba(255,255,255,0.14)] hover:[transform:perspective(1200px)_rotateX(5deg)_rotateY(-9deg)_translateY(-4px)] motion-reduce:hover:[transform:none]"
                       >
-                        <div className="text-base font-semibold text-white">{item.title}</div>
-                        <div className="muted-copy mt-2 text-sm leading-6">{item.text}</div>
+                        <div className="text-base font-semibold text-white">
+                          {item.title}
+                        </div>
+                        <div className="muted-copy mt-2 text-sm leading-6">
+                          {item.text}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -93,12 +99,14 @@ export function About() {
                 </div>
 
                 <div className="relative mx-auto flex w-full max-w-[24rem] flex-col items-center pt-2 lg:items-end lg:pt-0">
-                  <div className="pointer-events-none absolute bottom-16 h-[72%] w-[72%] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.2),rgba(255,255,255,0.07)_38%,transparent_72%)] blur-3xl" />
+                  <div className="pointer-events-none absolute bottom-8 h-[72%] w-[72%] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.22),rgba(255,255,255,0.08)_38%,transparent_72%)] blur-3xl" />
                   <div className="pointer-events-none absolute inset-x-[14%] bottom-6 h-8 rounded-full bg-white/10 blur-2xl" />
 
                   <div className="relative w-full">
                     <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-zinc-400 lg:ml-auto">
-                      <span className="text-white">{aboutSection.sideCard.eyebrow}</span>
+                      <span className="text-white">
+                        {aboutSection.sideCard.eyebrow}
+                      </span>
                       <span className="h-1 w-1 rounded-full bg-white/25" />
                       <span>{aboutSection.sideCard.title}</span>
                     </div>
@@ -106,7 +114,9 @@ export function About() {
                     <img
                       src={personImage}
                       alt={aboutSection.imageAlt}
-                      className="relative z-10 mx-auto h-auto max-h-[30rem] w-full max-w-[22rem] object-contain object-bottom drop-shadow-[0_34px_60px_rgba(255,255,255,0.12)] lg:ml-auto lg:mr-0"
+                      className="relative z-10 mx-auto h-auto max-h-[30rem] w-full max-w-[22rem] object-contain object-bottom brightness-[0.82] contrast-110 drop-shadow-[0_34px_60px_rgba(255,255,255,0.12)] sm:brightness-90 lg:ml-auto lg:mr-0"
+                      /*Color photo*/ /* className="relative z-10 mx-auto h-auto max-h-[30rem] w-full max-w-[22rem] object-contain object-bottom drop-shadow-[0_34px_60px_rgba(255,255,255,0.12)] sm:brightness-90 lg:ml-auto lg:mr-0" */
+                      /*Mono photo*/ /* className="relative z-10 mx-auto h-auto max-h-[30rem] w-full max-w-[22rem] object-contain object-bottom brightness-[0.82] contrast-110 drop-shadow-[0_34px_60px_rgba(255,255,255,0.12)] sm:brightness-90 lg:ml-auto lg:mr-0" */
                     />
                   </div>
 
@@ -144,7 +154,10 @@ export function Approach() {
   };
 
   return (
-    <section id="approach" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-10">
+    <section
+      id="approach"
+      className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-10"
+    >
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -152,7 +165,10 @@ export function Approach() {
         variants={fadeUp}
         transition={{ duration: 0.5 }}
       >
-        <SectionHeader eyebrow={approachSection.eyebrow} title={approachSection.title} />
+        <SectionHeader
+          eyebrow={approachSection.eyebrow}
+          title={approachSection.title}
+        />
       </motion.div>
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-12 lg:auto-rows-[minmax(240px,auto)]">
