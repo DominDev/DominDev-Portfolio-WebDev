@@ -1,5 +1,5 @@
 {
-  "name": "portfolio-studenta",
+  "name": "domindev-domindynamics",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -11,7 +11,7 @@
     "optimize:video": "node _scripts/optimize-video.js"
   },
   "keywords": [],
-  "author": "DominDev",
+  "author": "DominDev / DominDynamics",
   "license": "ISC",
   "dependencies": {
     "framer-motion": "^12.0.0",

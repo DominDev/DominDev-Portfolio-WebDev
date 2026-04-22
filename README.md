@@ -1,35 +1,13 @@
-# DominDev Portfolio WebDev
+# DominDev DominDynamics
 
-Statyczny frontend w `HTML + CSS (BEM) + Vanilla JS`, z przygotowanym miejscem na przyszły backend.
+Portfolio i strona marki `DominDynamics` zbudowana w `React 19 + Vite + Tailwind CSS + Framer Motion`.
 
-## Struktura
+## Stack
 
-```text
-.
-|- frontend/
-|  |- index.html
-|  |- vite.config.js
-|  |- assets/
-|     |- css/main.css
-|     |- js/main.js
-|     |- icons/favicon.svg
-|- backend/
-|  |- README.md
-|  |- config/
-|  |- src/
-|  |- tests/
-|- _docs/
-|- _scripts/
-|- package.json
-```
-
-## Założenia
-
-- frontend działa jako czysta warstwa prezentacji,
-- brak frameworka UI i brak Tailwinda,
-- CSS jest zorganizowany w BEM i zmiennych w `:root`,
-- JavaScript odpowiada tylko za progresywne ulepszenia,
-- `backend/` jest wydzielony już teraz, żeby później bez refaktoru dołożyć API, formularze, auth albo panel administracyjny.
+- React 19
+- Vite 6
+- Tailwind CSS
+- Framer Motion
 
 ## Uruchomienie
 
