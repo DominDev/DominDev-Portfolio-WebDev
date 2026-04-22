@@ -62,6 +62,7 @@ DominDynamics is not just another portfolio. It is a carefully crafted showcase 
 
 ### 🎨 What Makes This Different?
 
+<div align="center">
 <table>
 <tr>
 <td width="50%">
@@ -88,6 +89,7 @@ DominDynamics is not just another portfolio. It is a carefully crafted showcase 
 </td>
 </tr>
 </table>
+</div>>
 
 ### 4. Tech Stack
 
@@ -113,6 +115,8 @@ DominDynamics is not just another portfolio. It is a carefully crafted showcase 
 
 ### 📊 Stack Comparison
 
+<div align="center">
+
 | Category      | This Project          | Typical Alternative   | Why Better?                   |
 | ------------- | --------------------- | --------------------- | ----------------------------- |
 | **Framework** | React 19 (Optimized)  | React 18 + heavy deps | Faster hydration, better perf |
@@ -120,6 +124,7 @@ DominDynamics is not just another portfolio. It is a carefully crafted showcase 
 | **Images**    | WebP/AVIF (Automated) | PNG/JPG (Manual)      | 70% smaller assets            |
 | **Build**     | Vite 6                | Webpack               | 10x faster HMR & builds       |
 
+</div>>
 ### Why This Stack?
 
 > 💡 **Philosophy:** Performance is a feature, not a finishing touch.
@@ -174,6 +179,7 @@ This project prioritizes **Core Web Vitals and user experience**:
 
 ### 🎯 Optimizations Applied
 
+<div align="center">
 <table>
 <tr>
 <td width="33%">
@@ -211,6 +217,7 @@ This project prioritizes **Core Web Vitals and user experience**:
 </td>
 </tr>
 </table>
+</div>>
 
 ### 6. Accessibility
 
@@ -322,11 +329,13 @@ DominDynamics/
 
 ### 🌐 Recommended Hosting
 
+<div align="center">
 | Platform         | Best For                 | Status      |
 | ---------------- | ------------------------ | ----------- |
 | **Vercel**       | React / Vite projects    | ✅ Verified |
 | **Netlify**      | Static sites             | ✅ Verified |
 | **GitHub Pages** | Open source static sites | ✅ Verified |
+</div>
 
 ### 🚀 Build for Production
 
