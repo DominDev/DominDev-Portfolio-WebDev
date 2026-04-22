@@ -17,8 +17,8 @@ function PreloaderDotField({ shouldReduceMotion, progressValue }) {
     const spacing = window.matchMedia("(pointer: coarse)").matches ? 32 : 30;
     const baseSize = 1;
     const baseOpacity = 0.14;
-    const maxSize = 3.9;
-    const maxOpacity = 0.92;
+    const maxSize = 4.8;
+    const maxOpacity = 1;
     const bandWidth = 64;
 
     let width = 0;
@@ -99,8 +99,8 @@ function PreloaderDotField({ shouldReduceMotion, progressValue }) {
               0,
               1 - distance / (Math.min(width, height) * (0.12 + returnStrength * 0.1)),
             );
-            targetSize = Math.max(targetSize, baseSize + centerPulse * 2.2);
-            targetOpacity = Math.max(targetOpacity, baseOpacity + centerPulse * 0.46);
+            targetSize = Math.max(targetSize, baseSize + centerPulse * 2.9);
+            targetOpacity = Math.max(targetOpacity, baseOpacity + centerPulse * 0.58);
           }
         }
 
