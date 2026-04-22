@@ -113,22 +113,22 @@ export function DotGridCanvas({ className = "" }) {
     };
 
     const getIntroWaveFactor = (dot, timestamp) => {
-      if (!isCoarsePointer) return 0;
       if (introStartAt === null) introStartAt = timestamp;
 
-      const introDuration = 1050;
+      const introDuration = isCoarsePointer ? 1050 : 760;
       const introProgress = Math.min(1, (timestamp - introStartAt) / introDuration);
       if (introProgress >= 1) return 0;
 
       const normalizedDiagonal = (dot.x / Math.max(width, 1) + dot.y / Math.max(height, 1)) / 2;
       const waveFront = -0.14 + introProgress * 1.32;
-      const bandWidth = 0.16;
+      const bandWidth = isCoarsePointer ? 0.16 : 0.12;
       const distance = Math.abs(normalizedDiagonal - waveFront);
       if (distance > bandWidth) return 0;
 
       const waveStrength = 1 - distance / bandWidth;
-      const fadeOut = 1 - introProgress * 0.3;
-      return waveStrength * fadeOut;
+      const fadeOut = 1 - introProgress * (isCoarsePointer ? 0.3 : 0.44);
+      const intensity = isCoarsePointer ? 1 : 0.68;
+      return waveStrength * fadeOut * intensity;
     };
 
     const getTravelingScanFactor = (dot, timestamp) => {
