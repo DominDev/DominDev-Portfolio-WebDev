@@ -329,13 +329,11 @@ DominDynamics/
 
 ### 🌐 Recommended Hosting
 
-<div align="center">
 | Platform         | Best For                 | Status      |
 | ---------------- | ------------------------ | ----------- |
 | **Vercel**       | React / Vite projects    | ✅ Verified |
 | **Netlify**      | Static sites             | ✅ Verified |
 | **GitHub Pages** | Open source static sites | ✅ Verified |
-</div>
 
 ### 🚀 Build for Production
 
