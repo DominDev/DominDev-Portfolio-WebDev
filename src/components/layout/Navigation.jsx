@@ -135,6 +135,20 @@ export function Header() {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
+  const handleMobileSectionClick = (event, href) => {
+    if (typeof window === "undefined") return;
+
+    const targetSection = document.querySelector(href);
+    if (!(targetSection instanceof HTMLElement)) {
+      closeMenu();
+      return;
+    }
+
+    event.preventDefault();
+    targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.replaceState(null, "", href);
+    closeMenu();
+  };
 
   return (
     <>
@@ -214,7 +228,7 @@ export function Header() {
                 <motion.a
                   key={item.href}
                   href={item.href}
-                  onClick={closeMenu}
+                  onClick={(event) => handleMobileSectionClick(event, item.href)}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: activeHref === item.href ? 16 : 0 }}
                   transition={{
@@ -229,7 +243,7 @@ export function Header() {
               ))}
               <motion.a
                 href="#contact"
-                onClick={closeMenu}
+                onClick={(event) => handleMobileSectionClick(event, "#contact")}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: activeHref === "#contact" ? 16 : 0 }}
                 transition={{
