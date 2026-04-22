@@ -169,7 +169,7 @@ export const contactSection = {
 };
 
 export const contactInfo = {
-  email: "contact@example.com",
+  email: "kontakt@domindynamics.com",
   socials: [
     { label: "GitHub", href: "https://github.com/", icon: "external" },
     { label: "LinkedIn", href: "#", icon: "external" },
@@ -178,7 +178,7 @@ export const contactInfo = {
 };
 
 export const footerContent = {
-  signature: "Damian Dominiak",
-  tagline: "© 2026 · Strony · Interfejsy · Frontend",
-  mobileTagline: "Strony · Interfejsy · Frontend",
+  signature: "DominDynamics",
+  tagline: "© 2026 · domindynamics.com",
+  mobileTagline: "domindynamics.com",
 };
