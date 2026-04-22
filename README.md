@@ -31,18 +31,11 @@
 
 <table>
 <tr>
-<td width="20%">
+<td width="10%">
 
 **Desktop**
 ![Desktop](public/overview-desktop.png)
 
-</td>
-<td width="2%">
-
-**Mobile**
-![Mobile](public/overview-mobile.png)
-
-</td>
 </tr>
 </table>
 
