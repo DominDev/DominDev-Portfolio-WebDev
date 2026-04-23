@@ -1,6 +1,6 @@
 # MIT License (Code) + All Rights Reserved (Assets)
 
-Copyright (c) 2026 DominDev / DominDynamics
+Copyright (c) 2026 DominDev
 
 ## Code License (MIT)
 
@@ -26,13 +26,12 @@ SOFTWARE.
 
 All images, graphics, logos, icons, videos, audio files, and written content
 in this repository are **All Rights Reserved** and may not be used, copied,
-modified, or distributed without explicit written permission from DominDev / DominDynamics.
+modified, or distributed without explicit written permission from DominDev.
 
 This includes but is not limited to:
-
 - `/src/assets/` directory and all subdirectories
-- `/public/` directory (excluding manifest/robots/sitemap)
+- `/public/` directory (including manifest/robots/sitemap)
 - Brand assets, logos, and trademarks
-- Written content (copy, descriptions, blog posts) in `src/data/content.js`
+- Written content (copy, descriptions, data) in `src/data/content.js`
 
 For licensing inquiries, contact: contact@domindev.com
