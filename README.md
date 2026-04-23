@@ -6,7 +6,7 @@
 
 [![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-success?style=for-the-badge)](https://domindynamics.com)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/DominDev/DominDev-DominDynamics)
-[![License](https://img.shields.io/badge/License-MIT_%2B_ARR-blue?style=for-the-badge)](LICENSE)
+[![License](https://img.shields.io/badge/License-Code_MIT_%2B_Assets_ARR-blue?style=for-the-badge)](LICENSE)
 
 </div>
 
@@ -374,18 +374,23 @@ DominDynamics/
 
 ## 📄 License
 
-This project uses a **dual license**:
+This repository uses a **dual licensing model**:
 
 <div align="center">
 
 | Type                       | What's Covered            | Terms                           |
 | -------------------------- | ------------------------- | ------------------------------- |
 | ✅ **MIT License**         | Source code               | Free to use, modify, distribute |
-| ❌ **All Rights Reserved** | Images, content, branding | Permission required             |
+| ❌ **All Rights Reserved** | Assets, branding, copy    | Explicit permission required    |
 
 </div>
 
-See [LICENSE](LICENSE) for full legal terms.
+For ecosystem compatibility, `package.json` declares `MIT`, because the published package metadata can expose only one primary license value.
+
+The repository-level legal source of truth remains [LICENSE](LICENSE), which defines:
+
+- code under MIT
+- assets, branding, and written content as All Rights Reserved
 
 ### 12. Author
 

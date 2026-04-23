@@ -1,5 +1,12 @@
 # MIT License (Code) + All Rights Reserved (Assets)
 
+This repository uses a dual licensing model:
+
+- source code is licensed under the MIT License
+- assets, branding, and written content are All Rights Reserved unless explicit written permission is granted
+
+For package ecosystem compatibility, `package.json` declares the code license as `MIT`. The terms below remain the authoritative licensing reference for the repository as a whole.
+
 Copyright (c) 2026 DominDev
 
 ## Code License (MIT)

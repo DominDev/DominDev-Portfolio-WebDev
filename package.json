@@ -12,7 +12,7 @@
   },
   "keywords": [],
   "author": "DominDev / DominDynamics",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "framer-motion": "^12.0.0",
     "react": "^19.0.0",
