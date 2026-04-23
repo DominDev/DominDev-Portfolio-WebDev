@@ -2,8 +2,8 @@
  * Main sections below the About/Approach area.
  */
 
-import React from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import {
   architectureMap,
   contactInfo,
@@ -28,6 +28,27 @@ const branchHoverOffsets = [
   { x: 12, y: 8, scale: 1.025 },
 ];
 
+const branchEntryOffsets = [
+  { x: -118, y: 52 },
+  { x: 118, y: 52 },
+  { x: -104, y: -48 },
+  { x: 104, y: -48 },
+];
+
+const mobileBranchScrollRanges = [
+  [0.02, 0.48],
+  [0.16, 0.62],
+  [0.3, 0.76],
+  [0.44, 0.9],
+];
+
+const desktopBranchScrollRanges = [
+  [0.08, 0.56],
+  [0.08, 0.56],
+  [0.36, 0.88],
+  [0.36, 0.88],
+];
+
 const hoverSpring = {
   type: "spring",
   stiffness: 260,
@@ -42,9 +63,92 @@ function setGlowPosition(event) {
   element.style.setProperty("--my", `${event.clientY - rect.top}px`);
 }
 
+function ArchitectureBranch({ item, index, scrollYProgress, shouldReduceMotion, isDesktop }) {
+  const Icon = Icons[item.iconName] || Icons.CodeIcon;
+  const branchHover = shouldReduceMotion ? undefined : branchHoverOffsets[index];
+  const branchEntry = branchEntryOffsets[index] || { x: 0, y: 16 };
+  const branchRanges = isDesktop ? desktopBranchScrollRanges : mobileBranchScrollRanges;
+  const branchRange = branchRanges[index] || [0.1, 0.7];
+  const branchX = useTransform(scrollYProgress, branchRange, [branchEntry.x, 0]);
+  const branchY = useTransform(scrollYProgress, branchRange, [branchEntry.y, 0]);
+  const branchScale = useTransform(scrollYProgress, branchRange, [0.965, 1]);
+  const branchOpacity = useTransform(scrollYProgress, branchRange, [0.38, 1]);
+
+  return (
+    <motion.article
+      style={
+        shouldReduceMotion
+          ? undefined
+          : { x: branchX, y: branchY, scale: branchScale, opacity: branchOpacity }
+      }
+      className="relative"
+    >
+      <motion.div
+        whileHover={branchHover}
+        transition={hoverSpring}
+        onPointerMove={setGlowPosition}
+        className="glow-card group relative overflow-hidden rounded-[24px] border border-white/10 bg-black/40 p-5 shadow-[0_10px_24px_-18px_rgba(0,0,0,0.9)] transition-[border-color,background-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-white/22 hover:bg-black/55 hover:shadow-[0_30px_90px_-28px_rgba(255,255,255,0.18)] sm:p-6"
+      >
+        <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_55%)]" />
+        </div>
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/16 to-transparent transition group-hover:via-white/28 group-focus-within:via-white/28" />
+
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <span className="block font-mono text-[10px] uppercase tracking-[0.22em] text-zinc-500">
+              {item.layer}
+            </span>
+            <h3 className="mt-3 text-[1.55rem] font-semibold tracking-[-0.04em] text-white sm:text-[1.7rem]">
+              {item.title}
+            </h3>
+            <p className="muted-copy mt-3 max-w-[34ch] text-sm leading-7">
+              {item.summary}
+            </p>
+          </div>
+          <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-white/15 bg-white/[0.04] text-white transition group-hover:border-white/25 group-hover:bg-white/[0.07] group-hover:shadow-[0_0_20px_rgba(255,255,255,0.06)]">
+            <Icon className="h-5 w-5" />
+          </span>
+        </div>
+
+        <div className="mt-6 flex flex-wrap gap-2">
+          {item.chips.map((chip) => (
+            <span
+              key={chip}
+              className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 font-mono text-[11px] text-zinc-200 transition group-hover:border-white/20 group-hover:bg-white/[0.07] group-hover:text-white"
+            >
+              {chip}
+            </span>
+          ))}
+        </div>
+      </motion.div>
+    </motion.article>
+  );
+}
+
 export function Architecture() {
   const shouldReduceMotion = useReducedMotion();
+  const [isDesktop, setIsDesktop] = useState(false);
+  const architectureTreeRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: architectureTreeRef,
+    offset: ["start 90%", "end 60%"],
+  });
   const rootHover = shouldReduceMotion ? undefined : { y: -10, scale: 1.015 };
+  const connectorOpacity = useTransform(scrollYProgress, [0, 0.75], [0.18, 1]);
+  const verticalConnectorScale = useTransform(scrollYProgress, [0, 0.75], [0.35, 1]);
+  const horizontalConnectorScale = useTransform(scrollYProgress, [0.2, 1], [0.2, 1]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+    const handleChange = () => setIsDesktop(mediaQuery.matches);
+    handleChange();
+    mediaQuery.addEventListener("change", handleChange);
+
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
 
   return (
     <section id="architecture" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-10">
@@ -63,10 +167,11 @@ export function Architecture() {
       </motion.div>
 
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.15 }}
-        transition={{ duration: 0.5, delay: 0.06 }}
+        ref={architectureTreeRef}
+        initial={{ opacity: 0.92 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: false, amount: 0.15 }}
+        transition={{ duration: 0.35 }}
         className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#050505] px-5 py-6 sm:px-8 sm:py-8 lg:px-10 lg:py-10"
       >
         <div className="pointer-events-none absolute inset-0 opacity-50 [background-image:linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] [background-size:28px_28px]" />
@@ -93,67 +198,39 @@ export function Architecture() {
           </div>
 
           <div className="mx-auto mt-6 flex max-w-5xl flex-col items-center">
-            <span className="h-10 w-px bg-gradient-to-b from-white/30 to-white/5" />
-            <span className="h-2.5 w-2.5 rounded-full border border-white/20 bg-black shadow-[0_0_18px_rgba(255,255,255,0.18)]" />
-            <span className="mt-4 hidden h-px w-[76%] bg-gradient-to-r from-transparent via-white/12 to-transparent lg:block" />
+            <motion.span
+              style={
+                shouldReduceMotion
+                  ? undefined
+                  : { opacity: connectorOpacity, scaleY: verticalConnectorScale }
+              }
+              className="h-10 w-px origin-top bg-gradient-to-b from-white/30 to-white/5"
+            />
+            <motion.span
+              style={shouldReduceMotion ? undefined : { opacity: connectorOpacity }}
+              className="h-2.5 w-2.5 rounded-full border border-white/20 bg-black shadow-[0_0_18px_rgba(255,255,255,0.18)]"
+            />
+            <motion.span
+              style={
+                shouldReduceMotion
+                  ? undefined
+                  : { opacity: connectorOpacity, scaleX: horizontalConnectorScale }
+              }
+              className="mt-4 hidden h-px w-[76%] origin-center bg-gradient-to-r from-transparent via-white/12 to-transparent lg:block"
+            />
           </div>
 
           <div className="mt-6 grid gap-4 lg:grid-cols-2">
-            {architectureMap.branches.map((item, index) => {
-              const Icon = Icons[item.iconName] || Icons.CodeIcon;
-              const branchHover = shouldReduceMotion ? undefined : branchHoverOffsets[index];
-
-              return (
-                <motion.article
-                  key={item.title}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{ duration: 0.45, delay: 0.1 + index * 0.05 }}
-                  className="relative"
-                >
-                  <motion.div
-                    whileHover={branchHover}
-                    transition={hoverSpring}
-                    onPointerMove={setGlowPosition}
-                    className="glow-card group relative overflow-hidden rounded-[24px] border border-white/10 bg-black/40 p-5 shadow-[0_10px_24px_-18px_rgba(0,0,0,0.9)] transition-[border-color,background-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-white/22 hover:bg-black/55 hover:shadow-[0_30px_90px_-28px_rgba(255,255,255,0.18)] sm:p-6"
-                  >
-                    <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
-                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_55%)]" />
-                    </div>
-                    <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/16 to-transparent transition group-hover:via-white/28 group-focus-within:via-white/28" />
-
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <span className="block font-mono text-[10px] uppercase tracking-[0.22em] text-zinc-500">
-                          {item.layer}
-                        </span>
-                        <h3 className="mt-3 text-[1.55rem] font-semibold tracking-[-0.04em] text-white sm:text-[1.7rem]">
-                          {item.title}
-                        </h3>
-                        <p className="muted-copy mt-3 max-w-[34ch] text-sm leading-7">
-                          {item.summary}
-                        </p>
-                      </div>
-                      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-white/15 bg-white/[0.04] text-white transition group-hover:border-white/25 group-hover:bg-white/[0.07] group-hover:shadow-[0_0_20px_rgba(255,255,255,0.06)]">
-                        <Icon className="h-5 w-5" />
-                      </span>
-                    </div>
-
-                    <div className="mt-6 flex flex-wrap gap-2">
-                      {item.chips.map((chip) => (
-                        <span
-                          key={chip}
-                          className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 font-mono text-[11px] text-zinc-200 transition group-hover:border-white/20 group-hover:bg-white/[0.07] group-hover:text-white"
-                        >
-                          {chip}
-                        </span>
-                      ))}
-                    </div>
-                  </motion.div>
-                </motion.article>
-              );
-            })}
+            {architectureMap.branches.map((item, index) => (
+              <ArchitectureBranch
+                key={item.title}
+                item={item}
+                index={index}
+                scrollYProgress={scrollYProgress}
+                shouldReduceMotion={shouldReduceMotion}
+                isDesktop={isDesktop}
+              />
+            ))}
           </div>
         </div>
       </motion.div>

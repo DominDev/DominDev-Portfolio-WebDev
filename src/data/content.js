@@ -12,42 +12,50 @@ export const navItems = [
 
 export const heroContent = {
   badge: "OTWARTY NA PROJEKTY",
-  titleLead: "Projektuję i wdrażam",
+  titleLead: "Interfejs. Logika. Produkt.",
   rotatingWords: [
-    "landing page'e",
-    "interfejsy webowe",
-    "wydajne UI",
-    "nowoczesny frontend",
+    "czytelny UI",
+    "spójny flow",
+    "skalowalny kod",
+    "fullstack direction",
   ],
   description:
-    "Nowoczesne strony i interfejsy z naciskiem na estetykę, czytelność i płynne działanie.",
-  primaryCta: "Zobacz realizacje",
+    "Projektuję i wdrażam nowoczesne interfejsy oraz zaplecze pod produkty, które mają być czytelne, szybkie i gotowe do rozwoju.",
+  primaryCta: "Case studies",
   secondaryCta: "GitHub",
+  signals: [
+    "WCAG 2.2 AA",
+    "Performance-first",
+    "Progressive Enhancement",
+    "Component architecture",
+    "API thinking",
+    "Responsive by default",
+  ],
 };
 
 export const aboutSection = {
   eyebrow: "01 · O mnie",
-  titleLead: "Frontend, w którym liczy się",
-  titleAccent: "forma i logika.",
+  titleLead: "Od interfejsu",
+  titleAccent: "do logiki produktu.",
   description:
-    "Tworzę landing page'e i interfejsy, które mają wyglądać nowocześnie, działać płynnie i być czytelne dla użytkownika. Łączę techniczne podejście z estetyką, żeby budować projekty, które dobrze się ogląda i dobrze się rozwija.",
+    "Buduję landing page'e, interfejsy i struktury aplikacji, które mają dobrze wyglądać, działać przewidywalnie i utrzymywać porządek wraz z rozwojem produktu.",
   supportingText:
-    "Estetyka. Czytelność. Techniczne podejście.",
+    "UI. Logika. Skalowalna struktura.",
   imageAlt: "Portret w czarnym swetrze na transparentnym tle.",
-  primaryCta: "Współpraca",
-  secondaryCta: "Zobacz projekty",
+  primaryCta: "Omówmy projekt",
+  secondaryCta: "Case studies",
   highlights: [
-    { title: "Mocny start", text: "pierwszy ekran ma robić wrażenie" },
-    { title: "Czytelny układ", text: "jasny kierunek i dobra hierarchia" },
-    { title: "Lekki frontend", text: "płynność, responsywność i porządek" },
+    { title: "Mocny start", text: "pierwszy ekran ustawia kierunek i priorytety" },
+    { title: "Spójny flow", text: "hierarchia i interakcje bez zbędnego chaosu" },
+    { title: "Skalowalna struktura", text: "kod i logika gotowe na dalszy rozwój" },
   ],
   sideCard: {
     eyebrow: "Focus",
-    title: "Techniczne podejście",
+    title: "Systemowe podejście",
     description:
-      "Estetyka, responsywność i detale, które wzmacniają odbiór zamiast go rozpraszać.",
-    chips: ["React", "TypeScript", "Tailwind", "Framer Motion"],
-    note: "Estetyka. Czytelność. Techniczne podejście.",
+      "Interfejs, logika i integracje ułożone tak, żeby produkt był spójny nie tylko wizualnie, ale też strukturalnie.",
+    chips: ["React", "Node.js", "API", "Tailwind"],
+    note: "UI, logika i struktura, które wzmacniają produkt zamiast go komplikować.",
   },
 };
 
@@ -87,12 +95,12 @@ export const architectureMap = {
   eyebrow: "03 · Architektura",
   title: "Jak układam projekt.",
   description:
-    "Od warstwy wizualnej po logikę działania i jakość wykonania.",
+    "Od warstwy wizualnej po logikę działania, przepływ danych i jakość wykonania.",
   root: {
     eyebrow: "Core / Web Experience",
     title: "Product Surface",
     description:
-      "Tu spotykają się komunikat, interfejs i odbiór całości. Reszta warstw ma ten efekt wspierać.",
+      "Tu spotykają się komunikat, interfejs, logika i przepływ danych. Pozostałe warstwy mają wspierać spójny odbiór produktu.",
   },
   branches: [
     {
@@ -130,31 +138,31 @@ export const workSection = {
   eyebrow: "04 · Realizacje",
   title: "Projekty pokazujące kierunek i sposób myślenia.",
   description:
-    "Projekty, w których forma idzie w parze z logiką.",
+    "Krótki przekrój projektów, w których interfejs, logika i decyzje produktowe grają razem.",
 };
 
 export const workItems = [
   {
     number: "Case 01",
     year: "2026",
-    title: "Nowoczesny landing page dla lokalnej marki.",
-    text: "Koncepcja landing page'a nastawionego na mocny hero, czytelną ofertę i prosty układ prowadzący użytkownika do działania.",
+    title: "Landing page z kierunkiem.",
+    text: "Układ pod mocniejszy pierwszy ekran, czytelniejszą ofertę i prostszą drogę do działania.",
     metrics: [
-      { value: "Układ", label: "czytelny" },
-      { value: "Styl", label: "nowoczesny" },
-      { value: "CTA", label: "widoczne" },
+      { value: "Hero", label: "mocniejszy" },
+      { value: "CTA", label: "czytelniejsze" },
+      { value: "Flow", label: "krótsze" },
     ],
-    tags: ["Landing page", "Frontend", "Konwersja"],
+    tags: ["Landing page", "UI / UX", "Konwersja"],
   },
   {
     number: "Case 02",
     year: "2026",
-    title: "Projekt aplikacji webowej w rozwoju.",
-    text: "Koncepcja aplikacji webowej pokazująca strukturę widoków, podejście komponentowe i kierunek rozwoju w stronę fullstacku.",
+    title: "Web app z porządkiem.",
+    text: "Struktura widoków i komponentów ułożona pod spójny interfejs i dalszy rozwój produktu.",
     metrics: [
-      { value: "Code", label: "czysty" },
-      { value: "Flow", label: "spójny" },
-      { value: "System", label: "rozwijalny" },
+      { value: "System", label: "spójniejszy" },
+      { value: "Flow", label: "stabilniejsze" },
+      { value: "Kod", label: "czytelniejszy" },
     ],
     tags: ["Web app", "Fullstack", "Architektura"],
   },
@@ -165,13 +173,13 @@ export const contactSection = {
   titleLead: "Masz pomysł",
   titleAccent: "na projekt?",
   description:
-    "Możesz napisać w sprawie projektu, współpracy albo po prostu kontaktu.",
+    "Możesz napisać w sprawie projektu, współpracy albo konkretnego problemu do ułożenia.",
 };
 
 export const contactInfo = {
   email: "kontakt@domindynamics.com",
   socials: [
-    { label: "GitHub", href: "https://github.com/", icon: "external" },
+    { label: "GitHub", href: "https://github.com/DominDev/DominDev-DominDynamics", icon: "external" },
     { label: "LinkedIn", href: "#", icon: "external" },
     { label: "CV (PDF)", href: "#", icon: "external" },
   ],

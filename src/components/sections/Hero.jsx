@@ -97,15 +97,14 @@ export function Hero() {
             animate="visible"
             variants={fadeUp}
             transition={{ duration: 0.6, delay: 0.08 }}
-            className="mt-8 text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-white max-[480px]:text-4xl sm:text-7xl lg:text-[5.5rem] text-balance"
+            className="mt-8 text-center font-semibold leading-none tracking-[-0.06em] text-white text-balance"
           >
-            {heroContent.titleLead}
-            <br />
-            <span className="inline-flex items-center justify-center font-medium text-zinc-400">
+            <span className="block text-[3.05rem] max-[380px]:text-[2.65rem] sm:text-[4.65rem] lg:text-[5.45rem]">
+              {heroContent.titleLead}
+            </span>
+            <span className="mt-4 inline-flex min-h-[1.1em] items-center justify-center font-medium text-[2.65rem] tracking-[-0.05em] text-zinc-400 max-[380px]:text-[2.3rem] sm:text-[4rem] lg:text-[4.7rem]">
               [<span className="text-white">{typedText || " "}</span>]
-              <span className="hero-typed-caret ml-1 inline-block text-white">
-                ▎
-              </span>
+              <span className="hero-typed-caret ml-1 inline-block text-white">|</span>
             </span>
           </motion.h1>
 
