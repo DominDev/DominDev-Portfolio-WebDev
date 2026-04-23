@@ -21,13 +21,20 @@ function DockLink({ href, children, onClick, isActive = false }) {
       {isActive ? (
         <motion.span
           layoutId="desktop-active-pill"
-          transition={{ type: "spring", stiffness: 420, damping: 34, mass: 0.7 }}
+          transition={{
+            type: "spring",
+            stiffness: 420,
+            damping: 34,
+            mass: 0.7,
+          }}
           className="absolute inset-0 rounded-full border border-white/10 bg-white/[0.06]"
         />
       ) : null}
       <span
         className={`relative z-10 transition ${
-          isActive ? "text-white" : "muted-link hover:text-white focus-visible:text-white"
+          isActive
+            ? "text-white"
+            : "muted-link hover:text-white focus-visible:text-white"
         }`}
       >
         {children}
@@ -44,7 +51,8 @@ export function Header() {
     backgroundSize: "10px 10px",
   };
   const dotPatternSoftPill = {
-    backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.7) 1px, transparent 1px)",
+    backgroundImage:
+      "radial-gradient(circle, rgba(255,255,255,0.7) 1px, transparent 1px)",
     backgroundSize: "10px 10px",
   };
 
@@ -63,7 +71,9 @@ export function Header() {
     const sections = trackedNavItems
       .map((item) => {
         const section = document.querySelector(item.href);
-        return section instanceof HTMLElement ? { href: item.href, element: section } : null;
+        return section instanceof HTMLElement
+          ? { href: item.href, element: section }
+          : null;
       })
       .filter(Boolean);
 
@@ -85,13 +95,16 @@ export function Header() {
           href,
           top: rect.top,
           bottom: rect.bottom,
-          containsAnchor: rect.top <= viewportAnchor && rect.bottom >= viewportAnchor,
+          containsAnchor:
+            rect.top <= viewportAnchor && rect.bottom >= viewportAnchor,
           ratio: visibilityMap.get(href) ?? 0,
           distance: Math.abs(rect.top - viewportAnchor),
         };
       });
 
-      const containingSection = sectionsWithMetrics.find((section) => section.containsAnchor);
+      const containingSection = sectionsWithMetrics.find(
+        (section) => section.containsAnchor,
+      );
       if (containingSection) {
         setActiveHref(containingSection.href);
         return;
@@ -126,7 +139,7 @@ export function Header() {
       {
         rootMargin: "-18% 0px -42% 0px",
         threshold: [0, 0.12, 0.24, 0.4, 0.56, 0.72, 0.88, 1],
-      }
+      },
     );
 
     sections.forEach(({ element }) => observer.observe(element));
@@ -178,7 +191,11 @@ export function Header() {
           {/* Desktop Nav */}
           <nav className="hidden items-center gap-1 sm:flex">
             {navItems.map((item) => (
-              <DockLink key={item.href} href={item.href} isActive={activeHref === item.href}>
+              <DockLink
+                key={item.href}
+                href={item.href}
+                isActive={activeHref === item.href}
+              >
                 {item.label}
               </DockLink>
             ))}
@@ -205,7 +222,10 @@ export function Header() {
                 className="pointer-events-none absolute top-0 right-0 h-full w-1/2 opacity-[0.12]"
                 style={dotPatternPill}
               />
-              <div className="relative z-10" style={{ width: "1.35rem", height: "0.9rem" }}>
+              <div
+                className="relative z-10"
+                style={{ width: "1.35rem", height: "0.9rem" }}
+              >
                 <span
                   className="absolute left-0 block w-full rounded-full bg-black transition-all duration-300 ease-in-out"
                   style={{
@@ -259,15 +279,22 @@ export function Header() {
                 <motion.a
                   key={item.href}
                   href={item.href}
-                  onClick={(event) => handleMobileSectionClick(event, item.href)}
+                  onClick={(event) =>
+                    handleMobileSectionClick(event, item.href)
+                  }
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: activeHref === item.href ? 16 : 0 }}
                   transition={{
                     delay: idx * 0.05,
-                    x: { type: "spring", stiffness: 320, damping: 28, mass: 0.7 },
+                    x: {
+                      type: "spring",
+                      stiffness: 320,
+                      damping: 28,
+                      mass: 0.7,
+                    },
                     opacity: { duration: 0.2 },
                   }}
-                  className="text-3xl font-semibold tracking-tight text-white"
+                  className="text-4xl font-semibold tracking-tight text-white"
                 >
                   {item.label}
                 </motion.a>
@@ -282,8 +309,10 @@ export function Header() {
                   x: { type: "spring", stiffness: 320, damping: 28, mass: 0.7 },
                   opacity: { duration: 0.2 },
                 }}
-                className={`mt-4 text-3xl font-semibold tracking-tight transition-colors ${
-                  activeHref === "#contact" ? "text-white" : "text-white/60 hover:text-white focus-visible:text-white"
+                className={`mt-4 text-4xl font-semibold tracking-tight transition-colors ${
+                  activeHref === "#contact"
+                    ? "text-white"
+                    : "text-white/60 hover:text-white focus-visible:text-white"
                 }`}
               >
                 Kontakt
@@ -303,30 +332,29 @@ export function Header() {
                 <a
                   href={`mailto:${contactInfo.email}`}
                   aria-label="Napisz wiadomość"
-                  className="relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/12 bg-white/[0.2] text-white shadow-[0_0_30px_rgba(255,255,255,0.05)] transition hover:-translate-y-0.5 hover:border-white/18 hover:bg-white/[0.24] focus-visible:scale-[1.02]"
+                  className="relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/[0.09] text-white/85 shadow-[0_0_24px_rgba(255,255,255,0.03)] transition hover:-translate-y-0.5 hover:border-white/16 hover:bg-white/[0.14] hover:text-white focus-visible:scale-[1.02]"
                   style={{ width: "3.8rem", height: "2.4rem" }}
                 >
                   <span
                     aria-hidden="true"
-                    className="pointer-events-none absolute top-0 right-0 h-full w-1/2 opacity-[0.14]"
+                    className="pointer-events-none absolute top-0 right-0 h-full w-1/2 opacity-[0.08]"
                     style={dotPatternSoftPill}
                   />
                   <MailIcon className="relative z-10 h-[18px] w-[18px]" />
                 </a>
                 <a
                   href={
-                    contactInfo.socials.find((s) => s.label === "GitHub")
-                      ?.href
+                    contactInfo.socials.find((s) => s.label === "GitHub")?.href
                   }
                   target="_blank"
                   rel="noreferrer"
                   aria-label="GitHub"
-                  className="relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/12 bg-white/[0.2] text-white shadow-[0_0_30px_rgba(255,255,255,0.05)] transition hover:-translate-y-0.5 hover:border-white/18 hover:bg-white/[0.24] focus-visible:scale-[1.02]"
+                  className="relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/[0.09] text-white/85 shadow-[0_0_24px_rgba(255,255,255,0.03)] transition hover:-translate-y-0.5 hover:border-white/16 hover:bg-white/[0.14] hover:text-white focus-visible:scale-[1.02]"
                   style={{ width: "3.8rem", height: "2.4rem" }}
                 >
                   <span
                     aria-hidden="true"
-                    className="pointer-events-none absolute top-0 right-0 h-full w-1/2 opacity-[0.14]"
+                    className="pointer-events-none absolute top-0 right-0 h-full w-1/2 opacity-[0.08]"
                     style={dotPatternSoftPill}
                   />
                   <GithubIcon className="relative z-10 h-[18px] w-[18px]" />
@@ -339,12 +367,12 @@ export function Header() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label="LinkedIn"
-                  className="relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/12 bg-white/[0.2] text-white shadow-[0_0_30px_rgba(255,255,255,0.05)] transition hover:-translate-y-0.5 hover:border-white/18 hover:bg-white/[0.24] focus-visible:scale-[1.02]"
+                  className="relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/[0.09] text-white/85 shadow-[0_0_24px_rgba(255,255,255,0.03)] transition hover:-translate-y-0.5 hover:border-white/16 hover:bg-white/[0.14] hover:text-white focus-visible:scale-[1.02]"
                   style={{ width: "3.8rem", height: "2.4rem" }}
                 >
                   <span
                     aria-hidden="true"
-                    className="pointer-events-none absolute top-0 right-0 h-full w-1/2 opacity-[0.14]"
+                    className="pointer-events-none absolute top-0 right-0 h-full w-1/2 opacity-[0.08]"
                     style={dotPatternSoftPill}
                   />
                   <svg
