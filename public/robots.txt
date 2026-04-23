@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://domindynamics.com/sitemap.xml
+Sitemap: https://domindev.github.io/DominDev-DominDynamics/sitemap.xml
