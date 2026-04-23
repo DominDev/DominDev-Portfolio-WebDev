@@ -79,6 +79,7 @@ assets/**/originals/
 assets/**/raw/
 assets/**/source/
 assets/**/sources/
+_assets-source/
 
 # === Cache ===
 .cache/

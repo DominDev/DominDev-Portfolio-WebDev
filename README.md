@@ -286,17 +286,19 @@ DominDynamics/
 │   ├── 📁 components/         # Atomic components (UI, Sections, Layout)
 │   ├── 📁 data/
 │   │   └── content.js         # CENTRALIZED site content (One source of truth)
-│   ├── 📁 assets/             # Raw & optimized media
+│   ├── 📁 assets/             # Runtime media used by the app
 │   └── 📁 hooks/              # Custom React hooks (Cursor, etc.)
 ├── 📁 public/                 # Static assets & SEO files
 ├── 📁 _scripts/               # Automated optimization pipeline
-│   ├── optimize-images.js     # Sharp-based image optimization
-│   └── optimize-video.js      # FFmpeg-based video optimization
+│   ├── optimize-images.cjs     # Sharp-based image optimization
+│   └── optimize-video.cjs      # FFmpeg-based video optimization
 ├── 📄 tailwind.config.js      # Style architecture
 └── 📄 vite.config.js          # Build & Dev optimization
 ```
 
 > 💡 **Tip:** Edit `src/data/content.js` to change site text without touching a single JSX line.
+
+> Original media should live inside `_assets-source/` using the same relative paths as the final repo targets. The optimization scripts write production-ready assets into `src/assets/` and `public/`, and those optimized files are the versions meant to be committed.
 
 ### 8. Lessons Learned
 
@@ -415,3 +417,4 @@ The repository-level legal source of truth remains [LICENSE](LICENSE), which def
 <sub>Made with ❤️ and ☕ by DominDev</sub>
 
 </div>
+

@@ -1,56 +1,85 @@
 # _scripts
 
-Zestaw pomocniczych skryptów dla projektów HTML/CSS/JS (Vanilla).
+Utility scripts for the DominDynamics portfolio project.
 
-## Wymagania (Node)
+## Supported tooling
 
-Minimalnie: Node.js 18+.
+- `optimize-images.cjs` - optimizes raster images with `sharp`
+- `optimize-video.cjs` - creates production MP4/WebM variants with `ffmpeg-static`
+- `snapshot_code.ps1` - creates a code snapshot for review/reference
+- `snapshot_structure.ps1` - creates a structure snapshot for review/reference
+- `run-codex.ps1` - starts Codex with project-local configuration
 
-Zależności używane przez skrypty:
-- `terser` (minify-js.js)
-- `sharp` (optimize-images.js)
-- `ffmpeg-static` (optimize-video.js)
+## Source-of-truth model for media
 
-Instalacja (w root projektu):
-```bash
-npm init -y
-npm i -D terser sharp ffmpeg-static
+This project uses a mirrored source pipeline:
+
+- original media lives in `_assets-source/`
+- optimized runtime assets are written into `src/assets/` and `public/`
+- only optimized runtime assets are intended to be committed
+
+The `_assets-source/` directory is git-ignored and should mirror final repo paths.
+
+Example:
+
+```text
+_assets-source/
+├── public/
+│   └── og-image.png
+└── src/
+    └── assets/
+        ├── icons/
+        │   └── logo-white.png
+        └── images/
+            └── person-damian-mono-v2.png
 ```
 
-## Uruchamianie
+After running the scripts, the optimized files are written to:
 
-### Watcher (minifikacja CSS/JS przy zmianach)
-```bash
-node _scripts/watch.js
+```text
+public/og-image.png
+src/assets/icons/logo-white.png
+src/assets/images/person-damian-mono-v2.png
 ```
 
-### Minifikacja CSS (jednorazowo)
+## Commands
+
+### Optimize images
+
 ```bash
-node _scripts/auto-minify-css.js
+npm run optimize:images
 ```
 
-### Minifikacja CSS (watch)
+Useful flags:
+
 ```bash
-node _scripts/auto-minify-css.js --watch
+node _scripts/optimize-images.cjs --dry-run
+node _scripts/optimize-images.cjs --force
 ```
 
-### Minifikacja JS (lista plików w skrypcie)
+### Optimize video
+
 ```bash
-node _scripts/minify-js.js
+npm run optimize:video
 ```
 
-### Optymalizacja obrazów
+Useful flags:
+
 ```bash
-node _scripts/optimize-images.js
+node _scripts/optimize-video.cjs --dry-run
+node _scripts/optimize-video.cjs --force
+node _scripts/optimize-video.cjs --strip-audio
 ```
 
-### Optymalizacja wideo
-```bash
-node _scripts/optimize-video.js
-```
+### Snapshot scripts
 
-### Snapshot (PowerShell)
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\_scripts\snapshot_code.ps1
 powershell -ExecutionPolicy Bypass -File .\_scripts\snapshot_structure.ps1
 ```
+
+## Notes
+
+- Image optimization preserves the filename and extension used by the app.
+- Video optimization generates production-ready `.mp4` and `.webm` files from originals stored in `_assets-source/`.
+- Files outside mirrored `public/` and `src/assets/` paths are ignored on purpose.
