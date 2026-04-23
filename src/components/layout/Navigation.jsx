@@ -3,11 +3,11 @@
  * Nawigacja górna z obsługą menu mobilnego (burger) i interaktywnymi linkami.
  */
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { contactInfo, footerContent, navItems } from "../../data/content";
 import logoWhite from "../../assets/icons/logo-white.png";
-import { GithubIcon, MailIcon, ArrowRightIcon } from "../ui/Icons";
+import { GithubIcon, MailIcon } from "../ui/Icons";
 
 const trackedNavItems = [...navItems, { label: "Kontakt", href: "#contact" }];
 
@@ -46,6 +46,12 @@ function DockLink({ href, children, onClick, isActive = false }) {
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeHref, setActiveHref] = useState("");
+  const menuButtonRef = useRef(null);
+  const menuPanelRef = useRef(null);
+  const previousBodyOverflowRef = useRef("");
+  const shouldRestoreFocusRef = useRef(false);
+  const mobileMenuId = "mobile-navigation-panel";
+  const mobileMenuTitleId = "mobile-navigation-title";
   const dotPatternPill = {
     backgroundImage: "radial-gradient(circle, #000 1.2px, transparent 1.2px)",
     backgroundSize: "10px 10px",
@@ -56,13 +62,84 @@ export function Header() {
     backgroundSize: "10px 10px",
   };
 
-  // Blokowanie scrolla przy otwartym menu
   useEffect(() => {
     if (isMenuOpen) {
+      previousBodyOverflowRef.current = document.body.style.overflow;
       document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
+      return () => {
+        document.body.style.overflow = previousBodyOverflowRef.current;
+      };
     }
+
+    document.body.style.overflow = previousBodyOverflowRef.current;
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      if (shouldRestoreFocusRef.current) {
+        menuButtonRef.current?.focus();
+        shouldRestoreFocusRef.current = false;
+      }
+      return;
+    }
+
+    const panel = menuPanelRef.current;
+    if (!(panel instanceof HTMLElement)) {
+      return;
+    }
+
+    const focusableElements = panel.querySelectorAll(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    );
+    const firstFocusable = focusableElements[0];
+
+    if (firstFocusable instanceof HTMLElement) {
+      firstFocusable.focus();
+    } else {
+      panel.focus();
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        shouldRestoreFocusRef.current = true;
+        setIsMenuOpen(false);
+        return;
+      }
+
+      if (event.key !== "Tab") {
+        return;
+      }
+
+      const trappedFocusableElements = panel.querySelectorAll(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+
+      if (!trappedFocusableElements.length) {
+        event.preventDefault();
+        panel.focus();
+        return;
+      }
+
+      const firstElement = trappedFocusableElements[0];
+      const lastElement =
+        trappedFocusableElements[trappedFocusableElements.length - 1];
+
+      if (!(firstElement instanceof HTMLElement) || !(lastElement instanceof HTMLElement)) {
+        return;
+      }
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isMenuOpen]);
 
   useEffect(() => {
@@ -154,8 +231,17 @@ export function Header() {
     };
   }, []);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const closeMenu = () => setIsMenuOpen(false);
+  const toggleMenu = () => {
+    if (isMenuOpen) {
+      shouldRestoreFocusRef.current = true;
+    }
+    setIsMenuOpen((current) => !current);
+  };
+
+  const closeMenu = ({ restoreFocus = false } = {}) => {
+    shouldRestoreFocusRef.current = restoreFocus;
+    setIsMenuOpen(false);
+  };
   const handleMobileSectionClick = (event, href) => {
     if (typeof window === "undefined") return;
 
@@ -212,7 +298,12 @@ export function Header() {
 
             {/* Mobile Menu Button */}
             <button
+              ref={menuButtonRef}
+              type="button"
               onClick={toggleMenu}
+              aria-expanded={isMenuOpen}
+              aria-controls={mobileMenuId}
+              aria-haspopup="dialog"
               aria-label={isMenuOpen ? "Zamknij menu" : "Otwórz menu"}
               className="relative z-50 flex flex-none items-center justify-center overflow-hidden rounded-full bg-white text-black shadow-[0_0_30px_rgba(255,255,255,0.05)] transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 sm:hidden"
               style={{ width: "3.5rem", height: "2.25rem" }}
@@ -268,12 +359,21 @@ export function Header() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
+            ref={menuPanelRef}
+            id={mobileMenuId}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={mobileMenuTitleId}
+            tabIndex={-1}
             className="fixed inset-0 z-[90] flex flex-col bg-black p-6 pt-32 sm:hidden overflow-y-auto"
           >
+            <h2 id={mobileMenuTitleId} className="sr-only">
+              Menu mobilne
+            </h2>
             <nav className="flex flex-col gap-4">
               {navItems.map((item, idx) => (
                 <motion.a
@@ -294,6 +394,7 @@ export function Header() {
                     },
                     opacity: { duration: 0.2 },
                   }}
+                  aria-current={activeHref === item.href ? "page" : undefined}
                   className="text-4xl font-semibold tracking-tight text-white"
                 >
                   {item.label}
@@ -309,6 +410,7 @@ export function Header() {
                   x: { type: "spring", stiffness: 320, damping: 28, mass: 0.7 },
                   opacity: { duration: 0.2 },
                 }}
+                aria-current={activeHref === "#contact" ? "page" : undefined}
                 className={`mt-4 text-4xl font-semibold tracking-tight transition-colors ${
                   activeHref === "#contact"
                     ? "text-white"
