@@ -12,6 +12,7 @@ import {
   workSection,
 } from "../../data/content";
 import { DotGridCanvas, MeshBackground } from "../effects/Backgrounds";
+import { ArrowRightIcon, ExternalLinkIcon } from "../ui/Icons";
 import * as Icons from "../ui/Icons";
 import { SectionHeader, SurfaceCard } from "../ui/Cards";
 import { MockupChart, MockupTopology } from "../ui/Mockups";
@@ -379,7 +380,7 @@ export function Contact() {
             className="mx-auto mt-10 inline-flex min-h-[58px] max-w-full items-center gap-3 overflow-hidden rounded-full border border-white/20 bg-white/[0.09] px-6 py-4 text-lg font-medium text-white shadow-[0_18px_50px_-24px_rgba(255,255,255,0.2)] transition hover:-translate-y-0.5 hover:border-white hover:bg-white/[0.14] hover:shadow-[0_24px_70px_-26px_rgba(255,255,255,0.28)] focus-visible:border-white focus-visible:bg-white/[0.14] sm:px-7"
           >
             <span className="truncate">{contactInfo.email}</span>
-            <Icons.ArrowRightIcon className="h-5 w-5 shrink-0" />
+            <ArrowRightIcon className="h-5 w-5 shrink-0" />
           </a>
 
           <div className="mt-10 flex flex-wrap justify-center gap-3 text-sm">
@@ -393,7 +394,7 @@ export function Contact() {
                 className="inline-flex min-h-[46px] items-center gap-2 rounded-full border border-white/12 bg-white/[0.05] px-4 py-2.5 text-zinc-100 transition hover:-translate-y-0.5 hover:border-white/22 hover:bg-white/[0.09] hover:text-white focus-visible:border-white/30 focus-visible:bg-white/[0.09] focus-visible:text-white"
               >
                 <span>{link.label}</span>
-                <Icons.ExternalLinkIcon className="h-4 w-4 shrink-0 text-zinc-300" />
+                <ExternalLinkIcon className="h-4 w-4 shrink-0 text-zinc-300" />
               </a>
             ))}
           </div>
