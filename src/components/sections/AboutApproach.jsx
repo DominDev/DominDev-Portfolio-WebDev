@@ -18,6 +18,7 @@ import { ArrowRightIcon } from "../ui/Icons";
 import { MeshBackground } from "../effects/Backgrounds";
 import { SurfaceCard, SectionHeader } from "../ui/Cards";
 import * as Icons from "../ui/Icons";
+import { updateGlowPosition } from "../../utils/glow";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -63,13 +64,6 @@ export function About() {
   const [imageDeliveryProfile, setImageDeliveryProfile] = useState(
     resolveImageDeliveryProfile
   );
-
-  const handleGlowMove = (event) => {
-    const element = event.currentTarget;
-    const rect = element.getBoundingClientRect();
-    element.style.setProperty("--mx", `${event.clientX - rect.left}px`);
-    element.style.setProperty("--my", `${event.clientY - rect.top}px`);
-  };
 
   useEffect(() => {
     const syncImageDeliveryProfile = () => {
@@ -119,7 +113,7 @@ export function About() {
         >
           <SurfaceCard
             glow
-            onPointerMove={handleGlowMove}
+            onPointerMove={updateGlowPosition}
             className="rounded-[32px] border-white/12 bg-[#050505]/90 shadow-[0_30px_90px_-40px_rgba(0,0,0,0.85)]"
           >
             <div className="relative overflow-hidden rounded-[32px]">
@@ -233,13 +227,6 @@ export function About() {
 }
 
 export function Approach() {
-  const handleGlowMove = (event) => {
-    const element = event.currentTarget;
-    const rect = element.getBoundingClientRect();
-    element.style.setProperty("--mx", `${event.clientX - rect.left}px`);
-    element.style.setProperty("--my", `${event.clientY - rect.top}px`);
-  };
-
   return (
     <section id="approach" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-10">
       <motion.div
@@ -274,7 +261,7 @@ export function Approach() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.45, delay: index * 0.08 }}
-              onPointerMove={handleGlowMove}
+              onPointerMove={updateGlowPosition}
               className={`glow-card group relative overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.03] p-7 transition-transform duration-300 ease-out hover:-translate-y-1 ${layoutClass}`}
             >
               <div className="relative z-10 flex h-full flex-col gap-5">
