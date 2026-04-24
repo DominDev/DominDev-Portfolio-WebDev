@@ -3,10 +3,16 @@
  * About and Approach sections.
  */
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { aboutSection, approachSection, principles } from "../../data/content";
-import personImage from "../../assets/images/person-damian-mono-v2.png";
+import personImageFallbackPng from "../../assets/images/person-damian-mono-v2-720.png";
+import personImage480Avif from "../../assets/images/person-damian-mono-v2-480.avif";
+import personImage480Webp from "../../assets/images/person-damian-mono-v2-480.webp";
+import personImage720Avif from "../../assets/images/person-damian-mono-v2-720.avif";
+import personImage1200Avif from "../../assets/images/person-damian-mono-v2-1200.avif";
+import personImage720Webp from "../../assets/images/person-damian-mono-v2-720.webp";
+import personImage1200Webp from "../../assets/images/person-damian-mono-v2-1200.webp";
 import { PrimaryButton, GhostButton } from "../ui/Button";
 import { ArrowRightIcon } from "../ui/Icons";
 import { MeshBackground } from "../effects/Backgrounds";
@@ -18,13 +24,82 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
+const imageDeliveryProfiles = {
+  default: {
+    avifSrcSet: `${personImage720Avif} 720w, ${personImage1200Avif} 1200w`,
+    webpSrcSet: `${personImage720Webp} 720w, ${personImage1200Webp} 1200w`,
+  },
+  constrained: {
+    avifSrcSet: `${personImage480Avif} 480w, ${personImage720Avif} 720w`,
+    webpSrcSet: `${personImage480Webp} 480w, ${personImage720Webp} 720w`,
+  },
+};
+
+function getNetworkConnection() {
+  if (typeof navigator === "undefined") return null;
+
+  return (
+    navigator.connection ||
+    navigator.mozConnection ||
+    navigator.webkitConnection ||
+    null
+  );
+}
+
+function resolveImageDeliveryProfile() {
+  const connection = getNetworkConnection();
+  if (!connection) return "default";
+  if (connection.saveData) return "constrained";
+
+  const effectiveType = connection.effectiveType;
+  if (effectiveType === "slow-2g" || effectiveType === "2g" || effectiveType === "3g") {
+    return "constrained";
+  }
+
+  return "default";
+}
+
 export function About() {
+  const [imageDeliveryProfile, setImageDeliveryProfile] = useState(
+    resolveImageDeliveryProfile,
+  );
+
   const handleGlowMove = (event) => {
     const element = event.currentTarget;
     const rect = element.getBoundingClientRect();
     element.style.setProperty("--mx", `${event.clientX - rect.left}px`);
     element.style.setProperty("--my", `${event.clientY - rect.top}px`);
   };
+
+  useEffect(() => {
+    const syncImageDeliveryProfile = () => {
+      setImageDeliveryProfile(resolveImageDeliveryProfile());
+    };
+
+    const rafId =
+      typeof window !== "undefined"
+        ? window.requestAnimationFrame(syncImageDeliveryProfile)
+        : 0;
+    const timeoutId =
+      typeof window !== "undefined"
+        ? window.setTimeout(syncImageDeliveryProfile, 250)
+        : 0;
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("load", syncImageDeliveryProfile, { once: true });
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("load", syncImageDeliveryProfile);
+        if (rafId) window.cancelAnimationFrame(rafId);
+        if (timeoutId) window.clearTimeout(timeoutId);
+      }
+    };
+  }, []);
+
+  const imageSources =
+    imageDeliveryProfiles[imageDeliveryProfile] || imageDeliveryProfiles.default;
 
   return (
     <section
@@ -111,13 +186,30 @@ export function About() {
                       <span>{aboutSection.sideCard.title}</span>
                     </div>
 
-                    <img
-                      src={personImage}
-                      alt={aboutSection.imageAlt}
-                      className="relative z-10 mx-auto h-auto max-h-[30rem] w-full max-w-[22rem] object-contain object-bottom brightness-[0.82] contrast-110 drop-shadow-[0_34px_60px_rgba(255,255,255,0.12)] sm:brightness-90 lg:ml-auto lg:mr-0"
-                      /*Color photo*/ /* className="relative z-10 mx-auto h-auto max-h-[30rem] w-full max-w-[22rem] object-contain object-bottom drop-shadow-[0_34px_60px_rgba(255,255,255,0.12)] sm:brightness-90 lg:ml-auto lg:mr-0" */
-                      /*Mono photo*/ /* className="relative z-10 mx-auto h-auto max-h-[30rem] w-full max-w-[22rem] object-contain object-bottom brightness-[0.82] contrast-110 drop-shadow-[0_34px_60px_rgba(255,255,255,0.12)] sm:brightness-90 lg:ml-auto lg:mr-0" */
-                    />
+                    <picture
+                      key={imageDeliveryProfile}
+                      className="relative z-10 block"
+                    >
+                      <source
+                        type="image/avif"
+                        srcSet={imageSources.avifSrcSet}
+                        sizes="(min-width: 640px) 352px, 88vw"
+                      />
+                      <source
+                        type="image/webp"
+                        srcSet={imageSources.webpSrcSet}
+                        sizes="(min-width: 640px) 352px, 88vw"
+                      />
+                      <img
+                        src={personImageFallbackPng}
+                        alt={aboutSection.imageAlt}
+                        width="720"
+                        height="1075"
+                        loading="lazy"
+                        decoding="async"
+                        className="relative z-10 mx-auto h-auto max-h-[30rem] w-full max-w-[22rem] object-contain object-bottom brightness-[0.82] contrast-110 drop-shadow-[0_34px_60px_rgba(255,255,255,0.12)] sm:brightness-90 lg:ml-auto lg:mr-0"
+                      />
+                    </picture>
                   </div>
 
                   <div className="relative z-20 -mt-8 w-full max-w-[20rem] rounded-[20px] border border-white/10 bg-black/45 p-4 backdrop-blur-xl sm:-mt-10 lg:mr-0">

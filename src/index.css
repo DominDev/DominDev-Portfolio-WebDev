@@ -30,6 +30,7 @@ button:focus-visible {
 }
 
 html {
+  position: relative;
   scrollbar-width: thin;
   scrollbar-color: rgba(255,255,255,0.18) #000000;
   scroll-behavior: smooth;
@@ -37,6 +38,7 @@ html {
 }
 
 body {
+  position: relative;
   @apply bg-black text-zinc-200 selection:bg-white/20 selection:text-white antialiased overflow-x-hidden;
 }
 

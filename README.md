@@ -31,7 +31,7 @@
 ![Desktop Preview](public/og-image.png)
 
 **Desktop**
-![Desktop](public/overview-desktop.png)
+![Desktop](README-assets/overview-desktop.png)
 
 </div>
 
@@ -247,6 +247,8 @@ DominDynamics/
 │   ├── main.jsx            # App bootstrap
 │   └── index.css           # Global Tailwind layer and base effects
 ├── public/                 # Static assets, icons, OG image, sitemap
+├── README-assets/          # Repo-only preview images used in README
+├── _archive/               # Archived, non-runtime asset variants
 ├── _assets-source/         # Git-ignored original media mirrored to repo paths
 ├── _scripts/               # Asset and snapshot tooling
 │   ├── optimize-images.cjs # Sharp-based image optimization

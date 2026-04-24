@@ -151,7 +151,10 @@ export function Architecture() {
   }, []);
 
   return (
-    <section id="architecture" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-10">
+    <section
+      id="architecture"
+      className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-10"
+    >
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -172,6 +175,7 @@ export function Architecture() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: false, amount: 0.15 }}
         transition={{ duration: 0.35 }}
+        style={{ position: "relative" }}
         className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#050505] px-5 py-6 sm:px-8 sm:py-8 lg:px-10 lg:py-10"
       >
         <div className="pointer-events-none absolute inset-0 opacity-50 [background-image:linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] [background-size:28px_28px]" />
