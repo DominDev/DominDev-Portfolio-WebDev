@@ -392,6 +392,9 @@ export function Contact() {
               <a
                 key={link.label}
                 href={link.href}
+                target={link.external && !link.download ? "_blank" : undefined}
+                rel={link.external && !link.download ? "noreferrer" : undefined}
+                download={link.download ? "" : undefined}
                 className="inline-flex min-h-[46px] items-center gap-2 rounded-full border border-white/12 bg-white/[0.05] px-4 py-2.5 text-zinc-100 transition hover:-translate-y-0.5 hover:border-white/22 hover:bg-white/[0.09] hover:text-white focus-visible:border-white/30 focus-visible:bg-white/[0.09] focus-visible:text-white"
               >
                 <span>{link.label}</span>

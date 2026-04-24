@@ -3,6 +3,8 @@
  * Centralized site content for easier edits without touching component structure.
  */
 
+const cvHref = `${import.meta.env.BASE_URL}domin_dynamics_cv.pdf`;
+
 export const navItems = [
   { label: "O mnie", href: "#about" },
   { label: "Podejście", href: "#approach" },
@@ -23,14 +25,6 @@ export const heroContent = {
     "Projektuję i wdrażam nowoczesne interfejsy oraz zaplecze pod produkty, które mają być czytelne, szybkie i gotowe do rozwoju.",
   primaryCta: "Case studies",
   secondaryCta: "GitHub",
-  signals: [
-    "WCAG 2.2 AA",
-    "Performance-first",
-    "Progressive Enhancement",
-    "Component architecture",
-    "API thinking",
-    "Responsive by default",
-  ],
 };
 
 export const aboutSection = {
@@ -182,9 +176,15 @@ export const contactInfo = {
       label: "GitHub",
       href: "https://github.com/DominDev/DominDev-DominDynamics",
       icon: "external",
+      external: true,
     },
-    { label: "LinkedIn", href: "#", icon: "external" },
-    { label: "CV (PDF)", href: "#", icon: "external" },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/p-dominiak-pd/",
+      icon: "external",
+      external: true,
+    },
+    { label: "CV (PDF)", href: cvHref, icon: "external", download: true },
   ],
 };
 
