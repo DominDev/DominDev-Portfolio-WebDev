@@ -1,6 +1,6 @@
 /**
  * UI/Button.jsx
- * Uniwersalny komponent przycisku z obsługą stylów Primary i Ghost.
+ * Shared button primitives for the primary and ghost variants.
  */
 
 import React from "react";

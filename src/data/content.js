@@ -26,7 +26,7 @@ export const heroContent = {
   primaryCta: "Case studies",
   secondaryCta: "GitHub",
   scrollCue: "Scroll",
-  scrollAriaLabel: "PrzejdĹş do sekcji O mnie",
+  scrollAriaLabel: "Przejdź do sekcji O mnie",
 };
 
 export const aboutSection = {

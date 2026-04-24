@@ -136,6 +136,7 @@ export function Architecture() {
   const shouldReduceMotion = useReducedMotion();
   const [isDesktop, setIsDesktop] = useState(false);
   const architectureTreeRef = useRef(null);
+  // Desktop joins happen in row pairs, while mobile keeps a single-column stagger.
   const { scrollYProgress } = useScroll({
     target: architectureTreeRef,
     offset: ["start 90%", "end 60%"],

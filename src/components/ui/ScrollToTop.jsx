@@ -1,6 +1,6 @@
 /**
  * ui/ScrollToTop.jsx
- * Przycisk powrotu na górę strony, pojawiający się po przewinięciu.
+ * Floating return-to-top control with progress ring and footer overlap avoidance.
  */
 
 import React, { useState, useEffect } from "react";
@@ -22,6 +22,7 @@ export function ScrollToTop() {
 
       if (footer instanceof HTMLElement) {
         const footerRect = footer.getBoundingClientRect();
+        // Lift the button as the footer enters to avoid covering footer actions on small screens.
         const baseBottomOffset = 24;
         const buttonSize = 56;
         const footerOverlap = window.innerHeight - footerRect.top;

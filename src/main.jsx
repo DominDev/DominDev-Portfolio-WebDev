@@ -1,7 +1,6 @@
 /**
  * main.jsx
- * Inicjalizacja aplikacji React.
- * Łączy główny komponent App z elementem #root w HTML.
+ * React bootstrap entry for the single-page app.
  */
 
 import React from "react";

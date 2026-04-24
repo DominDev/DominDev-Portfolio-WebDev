@@ -1,3 +1,8 @@
+/**
+ * layout/Preloader.jsx
+ * Startup overlay that times the initial reveal and keeps the first paint intentional.
+ */
+
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import logoWhite from "../../assets/icons/logo-white.png";
@@ -61,6 +66,7 @@ function PreloaderDotField({ shouldReduceMotion, progressValue }) {
       const centerY = height / 2;
       const maxRadius = Math.hypot(width / 2, height / 2) + 40;
 
+      // Reuse the same progress driver as the numeric counter so the animation and loading state stay in sync.
       const cycleProgress = shouldReduceMotion ? 1 : progressValue;
       let waveRadius = 0;
 
@@ -163,6 +169,7 @@ export function Preloader({ onFinish }) {
         return;
       }
 
+      // Finish only after the visual progression reaches its terminal state.
       onFinish();
     };
 

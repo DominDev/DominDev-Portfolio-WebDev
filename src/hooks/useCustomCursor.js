@@ -1,7 +1,6 @@
 /**
  * hooks/useCustomCursor.js
- * Zarządza stanem i pozycją niestandardowego kursora.
- * Obsługuje interakcje (hover) z linkami i przyciskami.
+ * Tracks the custom cursor state and only enables it on fine pointers.
  */
 
 import { useState, useEffect } from "react";
@@ -19,6 +18,7 @@ export function useCustomCursor() {
     const handleMove = (event) => {
       setCursorVisible(true);
       setCursorPosition({ x: event.clientX, y: event.clientY });
+      // Expand the cursor only over interactive targets to keep the hook self-contained.
       const interactiveTarget =
         event.target instanceof Element
           ? event.target.closest("a, button, [data-cursor='hover']")

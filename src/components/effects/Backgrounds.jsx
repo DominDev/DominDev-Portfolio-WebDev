@@ -1,13 +1,12 @@
 /**
  * effects/Backgrounds.jsx
- * Zbiór dynamicznych teł i efektów wizualnych.
+ * Shared background layers and canvas-driven visual effects.
  */
 
 import React, { useRef, useEffect } from "react";
 
 /**
- * MeshBackground
- * Statyczne, rozmyte kule światła tworzące głębię w tle.
+ * Soft blurred orbs that add depth without introducing interaction cost.
  */
 export function MeshBackground({ className = "" }) {
   return (
@@ -21,9 +20,7 @@ export function MeshBackground({ className = "" }) {
 }
 
 /**
- * DotGridCanvas
- * Interaktywna siatka punktów reagująca na ruch myszki.
- * Wykorzystuje Canvas API dla maksymalnej wydajności.
+ * Dot grid rendered on canvas to keep the hover field lightweight on large surfaces.
  */
 export function DotGridCanvas({ className = "" }) {
   const canvasRef = useRef(null);
@@ -94,6 +91,7 @@ export function DotGridCanvas({ className = "" }) {
         };
       }
 
+      // Touch devices do not have a persistent pointer, so scroll becomes the ambient driver.
       scrollBoost += (0 - scrollBoost) * 0.022;
 
       const ambientX = width * 0.18;

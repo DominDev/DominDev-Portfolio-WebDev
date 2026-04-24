@@ -1,7 +1,6 @@
 /**
  * UI/Icons.jsx
- * Zbiór ikon SVG używanych w aplikacji jako komponenty React.
- * Każda ikona jest zoptymalizowana i przyjmuje props 'className'.
+ * SVG icon set used across the app.
  */
 
 import React from "react";
