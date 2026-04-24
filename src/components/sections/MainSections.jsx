@@ -15,6 +15,7 @@ import { DotGridCanvas, MeshBackground } from "../effects/Backgrounds";
 import * as Icons from "../ui/Icons";
 import { SectionHeader, SurfaceCard } from "../ui/Cards";
 import { MockupChart, MockupTopology } from "../ui/Mockups";
+import { updateGlowPosition } from "../../utils/glow";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -56,13 +57,6 @@ const hoverSpring = {
   mass: 0.7,
 };
 
-function setGlowPosition(event) {
-  const element = event.currentTarget;
-  const rect = element.getBoundingClientRect();
-  element.style.setProperty("--mx", `${event.clientX - rect.left}px`);
-  element.style.setProperty("--my", `${event.clientY - rect.top}px`);
-}
-
 function ArchitectureBranch({
   item,
   index,
@@ -92,7 +86,7 @@ function ArchitectureBranch({
       <motion.div
         whileHover={branchHover}
         transition={hoverSpring}
-        onPointerMove={setGlowPosition}
+        onPointerMove={updateGlowPosition}
         className="glow-card group relative overflow-hidden rounded-[24px] border border-white/10 bg-black/40 p-5 shadow-[0_10px_24px_-18px_rgba(0,0,0,0.9)] transition-[border-color,background-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-white/22 hover:bg-black/55 hover:shadow-[0_30px_90px_-28px_rgba(255,255,255,0.18)] sm:p-6"
       >
         <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
@@ -193,7 +187,7 @@ export function Architecture() {
             <motion.div
               whileHover={rootHover}
               transition={hoverSpring}
-              onPointerMove={setGlowPosition}
+              onPointerMove={updateGlowPosition}
               className="glow-card rounded-[24px] border border-white/10 bg-white/[0.04] px-6 py-6 text-center shadow-[0_10px_30px_-20px_rgba(0,0,0,0.7)] transition-[border-color,background-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-white/18 hover:bg-white/[0.06] hover:shadow-[0_26px_70px_-24px_rgba(255,255,255,0.12)] sm:px-8 sm:py-8"
             >
               <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-zinc-500">
@@ -280,7 +274,7 @@ export function Work() {
               <SurfaceCard
                 glow
                 className="overflow-hidden border-white/15 bg-[#0a0a0a] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.8)]"
-                onPointerMove={setGlowPosition}
+                onPointerMove={updateGlowPosition}
               >
                 <div className="flex items-center gap-3 border-b border-white/10 bg-white/[0.02] px-4 py-3">
                   <div className="flex gap-1.5">
