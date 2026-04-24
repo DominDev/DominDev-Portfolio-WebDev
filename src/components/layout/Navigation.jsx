@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { contactInfo, footerContent, navItems } from "../../data/content";
 import logoWhite from "../../assets/icons/logo-white.png";
 import { GithubIcon, MailIcon } from "../ui/Icons";
+import { getPreferredScrollBehavior } from "../../utils/motion";
 
 const trackedNavItems = [...navItems, { label: "Kontakt", href: "#contact" }];
 
@@ -257,7 +258,10 @@ export function Header() {
     }
 
     event.preventDefault();
-    targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    targetSection.scrollIntoView({
+      behavior: getPreferredScrollBehavior(),
+      block: "start",
+    });
     window.history.replaceState(null, "", href);
     closeMenu();
   };

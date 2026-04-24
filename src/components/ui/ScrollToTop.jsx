@@ -4,6 +4,7 @@
  */
 
 import React, { useState, useEffect } from "react";
+import { getPreferredScrollBehavior } from "../../utils/motion";
 
 export function ScrollToTop() {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -42,7 +43,7 @@ export function ScrollToTop() {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: getPreferredScrollBehavior() });
   };
 
   if (!showScrollTop) return null;
