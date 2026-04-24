@@ -1,6 +1,6 @@
 /**
  * UI/SurfaceCard.jsx
- * Komponent karty z opcjonalnym efektem poświaty (glow).
+ * Shared card shell used across sections, with optional glow support.
  */
 
 import React from "react";
@@ -17,8 +17,7 @@ export function SurfaceCard({ className = "", children, glow = false, ...props }
 }
 
 /**
- * UI/SectionHeader.jsx
- * Standaryzowany nagłówek sekcji z 'eyebrow', tytułem i opisem.
+ * Shared section heading primitive with eyebrow, title, and optional description.
  */
 export function SectionHeader({ eyebrow, title, description }) {
   return (
@@ -39,8 +38,7 @@ export function SectionHeader({ eyebrow, title, description }) {
 }
 
 /**
- * UI/NoiseOverlay.jsx
- * Subtelna nakładka z szumem, dodająca tekstury elementom UI.
+ * Lightweight texture layer used to keep dark surfaces from feeling too flat.
  */
 export function NoiseOverlay() {
   return (

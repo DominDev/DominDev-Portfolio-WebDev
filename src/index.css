@@ -4,7 +4,7 @@
 
 /**
  * index.css
- * Globalne style i animacje dla portfolio DominDev.
+ * Global CSS layer for shared effects, keyframes, and utility helpers.
  */
 
 :root {
@@ -46,7 +46,7 @@ body {
   @apply bg-black text-zinc-200 selection:bg-white/20 selection:text-white antialiased overflow-x-hidden;
 }
 
-/* Typography Helper */
+/* Typography helpers */
 .text-balance {
   text-wrap: balance;
 }
@@ -68,7 +68,7 @@ body {
   color: rgb(255 255 255 / 1);
 }
 
-/* Scrollbar Customization */
+/* Scrollbar */
 body::-webkit-scrollbar {
   width: 12px;
   height: 12px;
@@ -96,7 +96,7 @@ body::-webkit-scrollbar-thumb:hover {
   );
 }
 
-/* Animations */
+/* Keyframes */
 @keyframes meshDrift {
   from {
     transform: translate(0, 0) scale(1);
@@ -126,7 +126,7 @@ body::-webkit-scrollbar-thumb:hover {
   }
 }
 
-/* Hero Mesh Effects */
+/* Hero background */
 .hero-mesh-orb {
   position: absolute;
   width: 55vmax;
@@ -159,7 +159,7 @@ body::-webkit-scrollbar-thumb:hover {
   animation: heroCaretBlink 0.95s step-end infinite;
 }
 
-/* Glow Cards */
+/* Glow surfaces */
 .glow-card {
   position: relative;
   transition:

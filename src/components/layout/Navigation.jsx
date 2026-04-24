@@ -1,6 +1,6 @@
 /**
  * layout/Header.jsx
- * Nawigacja górna z obsługą menu mobilnego (burger) i interaktywnymi linkami.
+ * Header and footer navigation, including the fullscreen mobile menu.
  */
 
 import React, { useEffect, useRef, useState } from "react";
@@ -102,6 +102,7 @@ export function Header() {
       panel.focus();
     }
 
+    // Treat the fullscreen mobile menu like a modal so keyboard users stay inside it.
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
         event.preventDefault();
@@ -274,7 +275,6 @@ export function Header() {
             <span className="hidden xs:inline lg:text-base">Dominiak</span>
           </a>
 
-          {/* Desktop Nav */}
           <nav className="hidden items-center gap-1 sm:flex">
             {navItems.map((item) => (
               <DockLink
@@ -296,7 +296,6 @@ export function Header() {
               Kontakt
             </a>
 
-            {/* Mobile Menu Button */}
             <button
               ref={menuButtonRef}
               type="button"
@@ -355,7 +354,6 @@ export function Header() {
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -419,7 +417,6 @@ export function Header() {
               </motion.a>
             </nav>
 
-            {/* Nowa sekcja: Social & Mail w Mobile Menu */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
