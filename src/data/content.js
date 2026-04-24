@@ -25,6 +25,8 @@ export const heroContent = {
     "Projektuję i wdrażam nowoczesne interfejsy oraz zaplecze pod produkty, które mają być czytelne, szybkie i gotowe do rozwoju.",
   primaryCta: "Case studies",
   secondaryCta: "GitHub",
+  scrollCue: "Scroll",
+  scrollAriaLabel: "PrzejdĹş do sekcji O mnie",
 };
 
 export const aboutSection = {
