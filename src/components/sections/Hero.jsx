@@ -150,10 +150,10 @@ export function Hero() {
 
       <a
         href="#about"
-        aria-label="Przejdź do sekcji O mnie"
+        aria-label={heroContent.scrollAriaLabel}
         className="group absolute bottom-6 left-1/2 z-[4] flex -translate-x-1/2 flex-col items-center gap-2 rounded-full px-3 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-400 transition hover:text-white focus-visible:text-white"
       >
-        <span>Scroll</span>
+        <span>{heroContent.scrollCue}</span>
         <span className="relative h-10 w-px overflow-hidden bg-gradient-to-b from-transparent to-zinc-400/70 transition group-hover:to-white/80 group-focus-visible:to-white/80">
           <span
             className="absolute left-0 top-[-50%] h-1/2 w-full bg-gradient-to-b from-transparent to-white"
