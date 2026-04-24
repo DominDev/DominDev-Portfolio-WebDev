@@ -182,7 +182,9 @@ async function main() {
 
   if (!fs.existsSync(SOURCE_ROOT)) {
     console.log("No _assets-source directory found.");
-    console.log("Create mirrored video sources under _assets-source/public or _assets-source/src/assets.");
+    console.log(
+      "Create mirrored video sources under _assets-source/public or _assets-source/src/assets."
+    );
     return;
   }
 

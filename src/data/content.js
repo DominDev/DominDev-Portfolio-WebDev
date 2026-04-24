@@ -39,8 +39,7 @@ export const aboutSection = {
   titleAccent: "do logiki produktu.",
   description:
     "Buduję landing page'e, interfejsy i struktury aplikacji, które mają dobrze wyglądać, działać przewidywalnie i utrzymywać porządek wraz z rozwojem produktu.",
-  supportingText:
-    "UI. Logika. Skalowalna struktura.",
+  supportingText: "UI. Logika. Skalowalna struktura.",
   imageAlt: "Portret w czarnym swetrze na transparentnym tle.",
   primaryCta: "Omówmy projekt",
   secondaryCta: "Case studies",
@@ -179,7 +178,11 @@ export const contactSection = {
 export const contactInfo = {
   email: "kontakt@domindynamics.com",
   socials: [
-    { label: "GitHub", href: "https://github.com/DominDev/DominDev-DominDynamics", icon: "external" },
+    {
+      label: "GitHub",
+      href: "https://github.com/DominDev/DominDev-DominDynamics",
+      icon: "external",
+    },
     { label: "LinkedIn", href: "#", icon: "external" },
     { label: "CV (PDF)", href: "#", icon: "external" },
   ],

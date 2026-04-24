@@ -31,9 +31,7 @@ export function DotGridCanvas({ className = "" }) {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || typeof window === "undefined") return;
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion) return;
     const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
 
@@ -85,7 +83,7 @@ export function DotGridCanvas({ className = "" }) {
       }
     };
 
-    const getPointerPosition = (timestamp) => {
+    const getPointerPosition = (_timestamp) => {
       if (!isCoarsePointer) {
         return {
           pointerX: mouseX,
@@ -119,7 +117,8 @@ export function DotGridCanvas({ className = "" }) {
       const introProgress = Math.min(1, (timestamp - introStartAt) / introDuration);
       if (introProgress >= 1) return 0;
 
-      const normalizedDiagonal = (dot.x / Math.max(width, 1) + dot.y / Math.max(height, 1)) / 2;
+      const normalizedDiagonal =
+        (dot.x / Math.max(width, 1) + dot.y / Math.max(height, 1)) / 2;
       const waveFront = -0.14 + introProgress * 1.32;
       const bandWidth = isCoarsePointer ? 0.16 : 0.12;
       const distance = Math.abs(normalizedDiagonal - waveFront);
@@ -140,7 +139,8 @@ export function DotGridCanvas({ className = "" }) {
       if (cycleTime > activeDuration) return 0;
 
       const scanProgress = cycleTime / activeDuration;
-      const normalizedDiagonal = (dot.x / Math.max(width, 1) + dot.y / Math.max(height, 1)) / 2;
+      const normalizedDiagonal =
+        (dot.x / Math.max(width, 1) + dot.y / Math.max(height, 1)) / 2;
       const scanFront = -0.14 + scanProgress * 1.3;
       const bandWidth = 0.12 + scrollBoost * 0.04;
       const distance = Math.abs(normalizedDiagonal - scanFront);
@@ -153,13 +153,8 @@ export function DotGridCanvas({ className = "" }) {
 
     const draw = (timestamp) => {
       context.clearRect(0, 0, width, height);
-      const {
-        pointerX,
-        pointerY,
-        influenceRadius,
-        opacityGain,
-        sizeGain,
-      } = getPointerPosition(timestamp);
+      const { pointerX, pointerY, influenceRadius, opacityGain, sizeGain } =
+        getPointerPosition(timestamp);
 
       dots.forEach((dot) => {
         const dx = pointerX - dot.x;
@@ -172,27 +167,32 @@ export function DotGridCanvas({ className = "" }) {
         if (distance < influenceRadius) {
           const factor = 1 - distance / influenceRadius;
           targetSize = baseSize + (maxSize - baseSize) * factor * sizeGain;
-          targetOpacity = baseOpacity + (maxOpacity - baseOpacity) * factor * opacityGain;
+          targetOpacity =
+            baseOpacity + (maxOpacity - baseOpacity) * factor * opacityGain;
         }
 
         const travelingScanFactor = getTravelingScanFactor(dot, timestamp);
         if (travelingScanFactor > 0) {
           targetSize = Math.max(
             targetSize,
-            baseSize + (maxSize + 0.6 - baseSize) * travelingScanFactor,
+            baseSize + (maxSize + 0.6 - baseSize) * travelingScanFactor
           );
           targetOpacity = Math.max(
             targetOpacity,
-            baseOpacity + (Math.min(1, maxOpacity) - baseOpacity) * travelingScanFactor,
+            baseOpacity + (Math.min(1, maxOpacity) - baseOpacity) * travelingScanFactor
           );
         }
 
         const introWaveFactor = getIntroWaveFactor(dot, timestamp);
         if (introWaveFactor > 0) {
-          targetSize = Math.max(targetSize, baseSize + (maxSize + 1.2 - baseSize) * introWaveFactor);
+          targetSize = Math.max(
+            targetSize,
+            baseSize + (maxSize + 1.2 - baseSize) * introWaveFactor
+          );
           targetOpacity = Math.max(
             targetOpacity,
-            baseOpacity + (Math.min(1, maxOpacity + 0.08) - baseOpacity) * introWaveFactor,
+            baseOpacity +
+              (Math.min(1, maxOpacity + 0.08) - baseOpacity) * introWaveFactor
           );
         }
 

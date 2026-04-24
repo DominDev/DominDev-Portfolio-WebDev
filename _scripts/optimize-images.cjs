@@ -138,7 +138,9 @@ async function processImage(sourcePath) {
 async function main() {
   if (!fs.existsSync(SOURCE_ROOT)) {
     console.log("No _assets-source directory found.");
-    console.log("Create _assets-source/public or _assets-source/src/assets and place original files there.");
+    console.log(
+      "Create _assets-source/public or _assets-source/src/assets and place original files there."
+    );
     return;
   }
 

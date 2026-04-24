@@ -55,7 +55,6 @@ function PreloaderDotField({ shouldReduceMotion, progressValue }) {
 
     const draw = (timestamp) => {
       if (!startedAt) startedAt = timestamp;
-      const elapsed = timestamp - startedAt;
       context.clearRect(0, 0, width, height);
 
       const centerX = width / 2;
@@ -86,10 +85,13 @@ function PreloaderDotField({ shouldReduceMotion, progressValue }) {
           const bandDistance = Math.abs(distance - waveRadius);
           if (bandDistance < bandWidth) {
             const bandStrength = 1 - bandDistance / bandWidth;
-            targetSize = Math.max(targetSize, baseSize + (maxSize - baseSize) * bandStrength);
+            targetSize = Math.max(
+              targetSize,
+              baseSize + (maxSize - baseSize) * bandStrength
+            );
             targetOpacity = Math.max(
               targetOpacity,
-              baseOpacity + (maxOpacity - baseOpacity) * bandStrength,
+              baseOpacity + (maxOpacity - baseOpacity) * bandStrength
             );
           }
 
@@ -97,7 +99,7 @@ function PreloaderDotField({ shouldReduceMotion, progressValue }) {
             const returnStrength = (cycleProgress - 0.7) / 0.3;
             const centerPulse = Math.max(
               0,
-              1 - distance / (Math.min(width, height) * (0.12 + returnStrength * 0.1)),
+              1 - distance / (Math.min(width, height) * (0.12 + returnStrength * 0.1))
             );
             targetSize = Math.max(targetSize, baseSize + centerPulse * 2.9);
             targetOpacity = Math.max(targetOpacity, baseOpacity + centerPulse * 0.58);
@@ -192,18 +194,33 @@ export function Preloader({ onFinish }) {
 
       <motion.div
         initial={shouldReduceMotion ? false : { scale: 0.78, opacity: 0.24 }}
-        animate={shouldReduceMotion ? undefined : { scale: [0.78, 1.3, 1.05], opacity: [0.24, 0.5, 0.22] }}
+        animate={
+          shouldReduceMotion
+            ? undefined
+            : { scale: [0.78, 1.3, 1.05], opacity: [0.24, 0.5, 0.22] }
+        }
         transition={{ duration: 2.6, ease: [0.22, 1, 0.36, 1], times: [0, 0.48, 1] }}
         className="pointer-events-none absolute left-1/2 top-1/2 h-[46vw] w-[46vw] min-h-[18rem] min-w-[18rem] max-h-[38rem] max-w-[38rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.22)_0%,rgba(255,255,255,0.08)_28%,rgba(255,255,255,0.03)_50%,transparent_72%)] blur-3xl"
       />
 
       <div className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(circle_at_center,black_0%,black_48%,rgba(0,0,0,0.9)_72%,transparent_100%)]">
-        <PreloaderDotField shouldReduceMotion={shouldReduceMotion} progressValue={progressValue} />
+        <PreloaderDotField
+          shouldReduceMotion={shouldReduceMotion}
+          progressValue={progressValue}
+        />
       </div>
 
       <motion.div
-        initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.92, y: 18, filter: "blur(12px)" }}
-        animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
+        initial={
+          shouldReduceMotion
+            ? { opacity: 0 }
+            : { opacity: 0, scale: 0.92, y: 18, filter: "blur(12px)" }
+        }
+        animate={
+          shouldReduceMotion
+            ? { opacity: 1 }
+            : { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }
+        }
         transition={{
           duration: shouldReduceMotion ? 0.3 : 0.88,
           delay: shouldReduceMotion ? 0.08 : 0.28,
@@ -213,18 +230,38 @@ export function Preloader({ onFinish }) {
       >
         <div className="relative flex flex-col items-center">
           <motion.div
-            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0.35, scale: 0.9 }}
-            animate={shouldReduceMotion ? { opacity: 1 } : { opacity: [0.35, 1, 0.92], scale: [0.9, 1.04, 1] }}
-            transition={{ duration: shouldReduceMotion ? 0.3 : 1.2, delay: shouldReduceMotion ? 0.1 : 0.52, ease: [0.22, 1, 0.36, 1] }}
+            initial={
+              shouldReduceMotion ? { opacity: 1 } : { opacity: 0.35, scale: 0.9 }
+            }
+            animate={
+              shouldReduceMotion
+                ? { opacity: 1 }
+                : { opacity: [0.35, 1, 0.92], scale: [0.9, 1.04, 1] }
+            }
+            transition={{
+              duration: shouldReduceMotion ? 0.3 : 1.2,
+              delay: shouldReduceMotion ? 0.1 : 0.52,
+              ease: [0.22, 1, 0.36, 1],
+            }}
             className="pointer-events-none absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/18 blur-[68px] sm:h-36 sm:w-36"
           />
 
           <motion.img
             src={logoWhite}
             alt=""
-            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.84, rotate: -4 }}
-            animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: shouldReduceMotion ? 0.3 : 0.82, delay: shouldReduceMotion ? 0.12 : 0.44, ease: [0.22, 1, 0.36, 1] }}
+            initial={
+              shouldReduceMotion
+                ? { opacity: 1 }
+                : { opacity: 0, scale: 0.84, rotate: -4 }
+            }
+            animate={
+              shouldReduceMotion ? { opacity: 1 } : { opacity: 1, scale: 1, rotate: 0 }
+            }
+            transition={{
+              duration: shouldReduceMotion ? 0.3 : 0.82,
+              delay: shouldReduceMotion ? 0.12 : 0.44,
+              ease: [0.22, 1, 0.36, 1],
+            }}
             className="relative z-10 h-16 w-auto sm:h-20"
           />
         </div>
@@ -233,7 +270,11 @@ export function Preloader({ onFinish }) {
       <motion.div
         initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 16 }}
         animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-        transition={{ duration: 0.55, delay: shouldReduceMotion ? 0.12 : 0.96, ease: [0.22, 1, 0.36, 1] }}
+        transition={{
+          duration: 0.55,
+          delay: shouldReduceMotion ? 0.12 : 0.96,
+          ease: [0.22, 1, 0.36, 1],
+        }}
         className="absolute inset-x-0 bottom-0 z-10 px-6 pb-8 sm:px-8 sm:pb-10"
       >
         <div className="mx-auto w-full max-w-4xl">

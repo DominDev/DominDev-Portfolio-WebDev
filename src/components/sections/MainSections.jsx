@@ -63,7 +63,13 @@ function setGlowPosition(event) {
   element.style.setProperty("--my", `${event.clientY - rect.top}px`);
 }
 
-function ArchitectureBranch({ item, index, scrollYProgress, shouldReduceMotion, isDesktop }) {
+function ArchitectureBranch({
+  item,
+  index,
+  scrollYProgress,
+  shouldReduceMotion,
+  isDesktop,
+}) {
   const Icon = Icons[item.iconName] || Icons.CodeIcon;
   const branchHover = shouldReduceMotion ? undefined : branchHoverOffsets[index];
   const branchEntry = branchEntryOffsets[index] || { x: 0, y: 16 };
@@ -343,7 +349,10 @@ export function Work() {
 
 export function Contact() {
   return (
-    <section id="contact" className="relative overflow-hidden border-t border-white/10 px-5 py-28 sm:px-8 lg:px-10">
+    <section
+      id="contact"
+      className="relative overflow-hidden border-t border-white/10 px-5 py-28 sm:px-8 lg:px-10"
+    >
       <MeshBackground />
       <DotGridCanvas className="z-[1] opacity-80" />
       <div className="pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.6)_90%),linear-gradient(180deg,transparent_70%,#000_100%)]" />
@@ -362,7 +371,9 @@ export function Contact() {
           <h2 className="mt-5 text-4xl font-semibold tracking-[-0.04em] text-white text-balance sm:text-6xl">
             {contactSection.titleLead}
             <br />
-            <span className="font-medium text-zinc-500">{contactSection.titleAccent}</span>
+            <span className="font-medium text-zinc-500">
+              {contactSection.titleAccent}
+            </span>
           </h2>
           <p className="muted-copy mx-auto mt-5 max-w-[32rem] text-sm leading-7 sm:text-base">
             {contactSection.description}

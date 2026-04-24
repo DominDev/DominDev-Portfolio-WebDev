@@ -25,11 +25,46 @@ export function MockupChart() {
 
         <rect width="400" height="250" fill="transparent" />
         <rect x="0" y="0" width="70" height="250" fill="rgba(255,255,255,0.03)" />
-        <rect x="15" y="20" width="40" height="4" rx="2" fill="rgba(255,255,255,0.45)" />
-        <rect x="15" y="52" width="30" height="2" rx="1" fill="rgba(255,255,255,0.22)" />
-        <rect x="15" y="66" width="40" height="2" rx="1" fill="rgba(255,255,255,0.22)" />
-        <rect x="90" y="20" width="100" height="6" rx="2" fill="rgba(255,255,255,0.65)" />
-        <rect x="90" y="34" width="60" height="3" rx="1" fill="rgba(255,255,255,0.24)" />
+        <rect
+          x="15"
+          y="20"
+          width="40"
+          height="4"
+          rx="2"
+          fill="rgba(255,255,255,0.45)"
+        />
+        <rect
+          x="15"
+          y="52"
+          width="30"
+          height="2"
+          rx="1"
+          fill="rgba(255,255,255,0.22)"
+        />
+        <rect
+          x="15"
+          y="66"
+          width="40"
+          height="2"
+          rx="1"
+          fill="rgba(255,255,255,0.22)"
+        />
+        <rect
+          x="90"
+          y="20"
+          width="100"
+          height="6"
+          rx="2"
+          fill="rgba(255,255,255,0.65)"
+        />
+        <rect
+          x="90"
+          y="34"
+          width="60"
+          height="3"
+          rx="1"
+          fill="rgba(255,255,255,0.24)"
+        />
 
         {[
           { x: 90, w: 90, label: "hero", delay: 0 },
@@ -55,7 +90,9 @@ export function MockupChart() {
               fill="rgba(255,255,255,0.13)"
               stroke="rgba(255,255,255,0.48)"
               initial={{ opacity: 0 }}
-              animate={shouldReduceMotion ? { opacity: 0.08 } : { opacity: [0, 0.52, 0] }}
+              animate={
+                shouldReduceMotion ? { opacity: 0.08 } : { opacity: [0, 0.52, 0] }
+              }
               transition={{
                 duration: 1.1,
                 delay: panel.delay,
@@ -67,8 +104,22 @@ export function MockupChart() {
           </g>
         ))}
 
-        <rect x="100" y="80" width="40" height="12" rx="2" fill="rgba(255,255,255,0.85)" />
-        <rect x="195" y="80" width="45" height="12" rx="2" fill="rgba(255,255,255,0.85)" />
+        <rect
+          x="100"
+          y="80"
+          width="40"
+          height="12"
+          rx="2"
+          fill="rgba(255,255,255,0.85)"
+        />
+        <rect
+          x="195"
+          y="80"
+          width="45"
+          height="12"
+          rx="2"
+          fill="rgba(255,255,255,0.85)"
+        />
         <motion.rect
           x="290"
           y="80"
@@ -76,11 +127,29 @@ export function MockupChart() {
           height="12"
           rx="2"
           fill="rgba(255,255,255,0.9)"
-          animate={shouldReduceMotion ? undefined : { opacity: [0.65, 1, 0.65], scale: [1, 1.08, 1] }}
-          transition={{ duration: 1, delay: 1.8, repeat, repeatDelay: 2.6, ease: "easeInOut" }}
+          animate={
+            shouldReduceMotion
+              ? undefined
+              : { opacity: [0.65, 1, 0.65], scale: [1, 1.08, 1] }
+          }
+          transition={{
+            duration: 1,
+            delay: 1.8,
+            repeat,
+            repeatDelay: 2.6,
+            ease: "easeInOut",
+          }}
         />
 
-        <rect x="90" y="120" width="285" height="110" rx="5" fill="none" stroke="rgba(255,255,255,0.22)" />
+        <rect
+          x="90"
+          y="120"
+          width="285"
+          height="110"
+          rx="5"
+          fill="none"
+          stroke="rgba(255,255,255,0.22)"
+        />
         <motion.rect
           x="86"
           y="118"
@@ -88,7 +157,9 @@ export function MockupChart() {
           height="114"
           fill="url(#scan-glow)"
           initial={{ x: -40, opacity: 0 }}
-          animate={shouldReduceMotion ? { opacity: 0 } : { x: [0, 260], opacity: [0, 1, 0] }}
+          animate={
+            shouldReduceMotion ? { opacity: 0 } : { x: [0, 260], opacity: [0, 1, 0] }
+          }
           transition={{
             duration: 2.6,
             delay: 0.15,
@@ -110,7 +181,11 @@ export function MockupChart() {
           stroke="rgba(255,255,255,0.82)"
           strokeWidth="1.7"
           initial={shouldReduceMotion ? false : { pathLength: 0.15, opacity: 0.45 }}
-          animate={shouldReduceMotion ? { pathLength: 1, opacity: 0.75 } : { pathLength: [0.15, 1, 1], opacity: [0.45, 0.9, 0.62] }}
+          animate={
+            shouldReduceMotion
+              ? { pathLength: 1, opacity: 0.75 }
+              : { pathLength: [0.15, 1, 1], opacity: [0.45, 0.9, 0.62] }
+          }
           transition={{
             duration: 3.2,
             repeat,
@@ -170,10 +245,22 @@ export function MockupTopology() {
           animate={shouldReduceMotion ? undefined : { opacity: [0.72, 1, 0.72] }}
           transition={{ duration: 3, repeat, ease: "easeInOut" }}
         />
-        <text x="200" y="38" textAnchor="middle" fontSize="9" fill="rgba(255,255,255,0.9)">
+        <text
+          x="200"
+          y="38"
+          textAnchor="middle"
+          fontSize="9"
+          fill="rgba(255,255,255,0.9)"
+        >
           API Gateway
         </text>
-        <text x="200" y="50" textAnchor="middle" fontSize="7" fill="rgba(255,255,255,0.4)">
+        <text
+          x="200"
+          y="50"
+          textAnchor="middle"
+          fontSize="7"
+          fill="rgba(255,255,255,0.4)"
+        >
           v1
         </text>
 
@@ -197,7 +284,11 @@ export function MockupTopology() {
               strokeWidth="1.6"
               markerEnd={`url(#${markerId})`}
               initial={shouldReduceMotion ? false : { pathLength: 0, opacity: 0 }}
-              animate={shouldReduceMotion ? { pathLength: 1, opacity: 0.35 } : { pathLength: [0, 1, 1], opacity: [0, 1, 0] }}
+              animate={
+                shouldReduceMotion
+                  ? { pathLength: 1, opacity: 0.35 }
+                  : { pathLength: [0, 1, 1], opacity: [0, 1, 0] }
+              }
               transition={{
                 duration: 1.15,
                 delay: route.delay,
@@ -229,7 +320,9 @@ export function MockupTopology() {
               fill="rgba(255,255,255,0.09)"
               stroke="rgba(255,255,255,0.55)"
               initial={{ opacity: 0 }}
-              animate={shouldReduceMotion ? { opacity: 0.08 } : { opacity: [0, 0.58, 0] }}
+              animate={
+                shouldReduceMotion ? { opacity: 0.08 } : { opacity: [0, 0.58, 0] }
+              }
               transition={{
                 duration: 1.15,
                 delay: box.delay,
@@ -264,16 +357,58 @@ export function MockupTopology() {
           </g>
         ))}
 
-        <rect x="60" y="190" width="90" height="36" rx="4" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.25)" />
-        <rect x="170" y="190" width="80" height="36" rx="4" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.25)" />
-        <rect x="270" y="190" width="85" height="36" rx="4" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.25)" />
-        <text x="105" y="212" textAnchor="middle" fontSize="8" fill="rgba(255,255,255,0.65)">
+        <rect
+          x="60"
+          y="190"
+          width="90"
+          height="36"
+          rx="4"
+          fill="rgba(255,255,255,0.03)"
+          stroke="rgba(255,255,255,0.25)"
+        />
+        <rect
+          x="170"
+          y="190"
+          width="80"
+          height="36"
+          rx="4"
+          fill="rgba(255,255,255,0.03)"
+          stroke="rgba(255,255,255,0.25)"
+        />
+        <rect
+          x="270"
+          y="190"
+          width="85"
+          height="36"
+          rx="4"
+          fill="rgba(255,255,255,0.03)"
+          stroke="rgba(255,255,255,0.25)"
+        />
+        <text
+          x="105"
+          y="212"
+          textAnchor="middle"
+          fontSize="8"
+          fill="rgba(255,255,255,0.65)"
+        >
           postgresql
         </text>
-        <text x="210" y="212" textAnchor="middle" fontSize="8" fill="rgba(255,255,255,0.65)">
+        <text
+          x="210"
+          y="212"
+          textAnchor="middle"
+          fontSize="8"
+          fill="rgba(255,255,255,0.65)"
+        >
           redis
         </text>
-        <text x="312.5" y="212" textAnchor="middle" fontSize="8" fill="rgba(255,255,255,0.65)">
+        <text
+          x="312.5"
+          y="212"
+          textAnchor="middle"
+          fontSize="8"
+          fill="rgba(255,255,255,0.65)"
+        >
           queue
         </text>
       </svg>

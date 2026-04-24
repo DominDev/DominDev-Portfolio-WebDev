@@ -61,7 +61,7 @@ function resolveImageDeliveryProfile() {
 
 export function About() {
   const [imageDeliveryProfile, setImageDeliveryProfile] = useState(
-    resolveImageDeliveryProfile,
+    resolveImageDeliveryProfile
   );
 
   const handleGlowMove = (event) => {
@@ -134,9 +134,7 @@ export function About() {
                   <h2 className="text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
                     {aboutSection.titleLead}
                     <br />
-                    <span className="text-zinc-400">
-                      {aboutSection.titleAccent}
-                    </span>
+                    <span className="text-zinc-400">{aboutSection.titleAccent}</span>
                   </h2>
 
                   <p className="mt-6 max-w-[48ch] text-lg leading-8 text-zinc-300">
@@ -186,10 +184,7 @@ export function About() {
                       <span>{aboutSection.sideCard.title}</span>
                     </div>
 
-                    <picture
-                      key={imageDeliveryProfile}
-                      className="relative z-10 block"
-                    >
+                    <picture key={imageDeliveryProfile} className="relative z-10 block">
                       <source
                         type="image/avif"
                         srcSet={imageSources.avifSrcSet}
@@ -246,10 +241,7 @@ export function Approach() {
   };
 
   return (
-    <section
-      id="approach"
-      className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-10"
-    >
+    <section id="approach" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-10">
       <motion.div
         initial="hidden"
         whileInView="visible"

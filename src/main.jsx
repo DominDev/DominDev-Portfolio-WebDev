@@ -1,6 +1,6 @@
 /**
  * main.jsx
- * Inicjalizacja aplikacji React. 
+ * Inicjalizacja aplikacji React.
  * Łączy główny komponent App z elementem #root w HTML.
  */
 
@@ -16,6 +16,6 @@ if (rootElement) {
   root.render(
     <React.StrictMode>
       <App />
-    </React.StrictMode>,
+    </React.StrictMode>
   );
 }

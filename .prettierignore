@@ -1,0 +1,7 @@
+dist/
+node_modules/
+_docs/
+_archive/
+README-assets/
+_assets-source/
+package-lock.json

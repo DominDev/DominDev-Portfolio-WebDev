@@ -5,7 +5,7 @@
 
 <div align="center">
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit-success?style=for-the-badge)](https://domindynamics.com)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit-success?style=for-the-badge)](https://domindev.github.io/DominDev-DominDynamics/)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/DominDev/DominDev-DominDynamics)
 [![License](https://img.shields.io/badge/License-Code_MIT_%2B_Assets_ARR-blue?style=for-the-badge)](LICENSE)
 
@@ -35,7 +35,7 @@
 
 </div>
 
-> See it live: [domindynamics.com](https://domindynamics.com)
+> See it live: [domindev.github.io/DominDev-DominDynamics](https://domindev.github.io/DominDev-DominDynamics/)
 
 ### 3. About & Business Value
 
@@ -232,10 +232,27 @@ npm install
 npm run dev
 ```
 
+### Quality Checks
+
+```bash
+npm run format:check
+npm run lint
+npm run test:smoke
+npm run check
+```
+
+- `format:check` verifies code style consistency with Prettier
+- `lint` checks code quality, hooks, a11y basics, and unused imports
+- `test:smoke` verifies that the main app tree renders
+- `check` runs format, lint, smoke test, and production build before shipping changes
+
 ### Project Structure
 
 ```text
 DominDynamics/
+├── .prettierrc.json         # Prettier formatting rules
+├── .prettierignore          # Paths excluded from formatting
+├── eslint.config.js         # ESLint quality rules
 ├── index.html              # Entry point and SEO shell
 ├── src/
 │   ├── components/         # Sections, layout, effects, reusable UI
@@ -243,6 +260,7 @@ DominDynamics/
 │   │   └── content.js      # Centralized content and section data
 │   ├── assets/             # Runtime media used by the app
 │   ├── hooks/              # Custom interaction hooks
+│   ├── test/               # Smoke test setup and test files
 │   ├── App.jsx             # Main page composition
 │   ├── main.jsx            # App bootstrap
 │   └── index.css           # Global Tailwind layer and base effects
@@ -254,7 +272,8 @@ DominDynamics/
 │   ├── optimize-images.cjs # Sharp-based image optimization
 │   └── optimize-video.cjs  # FFmpeg-based video optimization
 ├── tailwind.config.js      # Tailwind setup
-└── vite.config.js          # Vite build configuration
+├── vite.config.js          # Vite build configuration
+└── vitest.config.js        # Vitest smoke test configuration
 ```
 
 ### Content Edit
@@ -331,4 +350,4 @@ Building digital experiences that convert through structure, clarity, and execut
 
 If the direction behind this project matches the kind of digital product you want to build, the live version is here:
 
-**[View Live Demo](https://domindynamics.com)**
+**[View Live Demo](https://domindev.github.io/DominDev-DominDynamics/)**

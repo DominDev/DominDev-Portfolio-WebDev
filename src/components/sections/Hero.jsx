@@ -20,7 +20,8 @@ export function Hero() {
   const [typedText, setTypedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const githubHref =
-    contactInfo.socials.find((item) => item.label === "GitHub")?.href || "https://github.com/";
+    contactInfo.socials.find((item) => item.label === "GitHub")?.href ||
+    "https://github.com/";
   const rotatingWords = heroContent.rotatingWords;
 
   useEffect(() => {
@@ -37,7 +38,11 @@ export function Hero() {
     const isWordCleared = typedText === "";
 
     const typingDelay = isDeleting ? 48 : 78;
-    const pauseDelay = isWordComplete ? 1400 : isWordCleared && isDeleting ? 180 : typingDelay;
+    const pauseDelay = isWordComplete
+      ? 1400
+      : isWordCleared && isDeleting
+        ? 180
+        : typingDelay;
 
     const timeout = setTimeout(() => {
       if (!isDeleting && !isWordComplete) {

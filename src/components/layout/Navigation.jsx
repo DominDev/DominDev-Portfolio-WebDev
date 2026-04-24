@@ -89,7 +89,7 @@ export function Header() {
     }
 
     const focusableElements = panel.querySelectorAll(
-      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
     );
     const firstFocusable = focusableElements[0];
 
@@ -112,7 +112,7 @@ export function Header() {
       }
 
       const trappedFocusableElements = panel.querySelectorAll(
-        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
       );
 
       if (!trappedFocusableElements.length) {
@@ -122,10 +122,12 @@ export function Header() {
       }
 
       const firstElement = trappedFocusableElements[0];
-      const lastElement =
-        trappedFocusableElements[trappedFocusableElements.length - 1];
+      const lastElement = trappedFocusableElements[trappedFocusableElements.length - 1];
 
-      if (!(firstElement instanceof HTMLElement) || !(lastElement instanceof HTMLElement)) {
+      if (
+        !(firstElement instanceof HTMLElement) ||
+        !(lastElement instanceof HTMLElement)
+      ) {
         return;
       }
 
@@ -172,15 +174,14 @@ export function Header() {
           href,
           top: rect.top,
           bottom: rect.bottom,
-          containsAnchor:
-            rect.top <= viewportAnchor && rect.bottom >= viewportAnchor,
+          containsAnchor: rect.top <= viewportAnchor && rect.bottom >= viewportAnchor,
           ratio: visibilityMap.get(href) ?? 0,
           distance: Math.abs(rect.top - viewportAnchor),
         };
       });
 
       const containingSection = sectionsWithMetrics.find(
-        (section) => section.containsAnchor,
+        (section) => section.containsAnchor
       );
       if (containingSection) {
         setActiveHref(containingSection.href);
@@ -216,7 +217,7 @@ export function Header() {
       {
         rootMargin: "-18% 0px -42% 0px",
         threshold: [0, 0.12, 0.24, 0.4, 0.56, 0.72, 0.88, 1],
-      },
+      }
     );
 
     sections.forEach(({ element }) => observer.observe(element));
@@ -266,11 +267,7 @@ export function Header() {
             onClick={closeMenu}
             className="inline-flex min-h-[44px] items-center gap-2 whitespace-nowrap rounded-full font-medium text-white lg:min-h-[50px] lg:gap-3"
           >
-            <img
-              src={logoWhite}
-              alt="DD logo"
-              className="h-8 w-auto shrink-0 lg:h-9"
-            />
+            <img src={logoWhite} alt="DD logo" className="h-8 w-auto shrink-0 lg:h-9" />
             <span className="hidden xs:inline lg:text-base">Dominiak</span>
           </a>
 
@@ -379,9 +376,7 @@ export function Header() {
                 <motion.a
                   key={item.href}
                   href={item.href}
-                  onClick={(event) =>
-                    handleMobileSectionClick(event, item.href)
-                  }
+                  onClick={(event) => handleMobileSectionClick(event, item.href)}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: activeHref === item.href ? 16 : 0 }}
                   transition={{
@@ -445,9 +440,7 @@ export function Header() {
                   <MailIcon className="relative z-10 h-[18px] w-[18px]" />
                 </a>
                 <a
-                  href={
-                    contactInfo.socials.find((s) => s.label === "GitHub")?.href
-                  }
+                  href={contactInfo.socials.find((s) => s.label === "GitHub")?.href}
                   target="_blank"
                   rel="noreferrer"
                   aria-label="GitHub"
@@ -462,10 +455,7 @@ export function Header() {
                   <GithubIcon className="relative z-10 h-[18px] w-[18px]" />
                 </a>
                 <a
-                  href={
-                    contactInfo.socials.find((s) => s.label === "LinkedIn")
-                      ?.href
-                  }
+                  href={contactInfo.socials.find((s) => s.label === "LinkedIn")?.href}
                   target="_blank"
                   rel="noreferrer"
                   aria-label="LinkedIn"

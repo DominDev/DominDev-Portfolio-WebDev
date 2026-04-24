@@ -1,6 +1,6 @@
 /**
  * App.jsx
- * Główny punkt wejścia aplikacji. 
+ * Główny punkt wejścia aplikacji.
  * Składa modularne sekcje w spójną całość i zarządza globalnymi stanami (kursor).
  */
 

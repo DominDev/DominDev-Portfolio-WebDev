@@ -1,4 +1,4 @@
-# _scripts
+# \_scripts
 
 Utility scripts for the DominDynamics portfolio project.
 
