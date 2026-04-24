@@ -29,8 +29,7 @@ export function useCustomCursor({ disabled = false } = {}) {
       if (!(cursorNode instanceof HTMLElement)) return;
 
       const scale = isExpandedRef.current ? 3 : 1;
-      cursorNode.style.opacity =
-        !disabled && isVisibleRef.current ? "1" : "0";
+      cursorNode.style.opacity = !disabled && isVisibleRef.current ? "1" : "0";
       cursorNode.style.transform = `translate(${currentPositionRef.current.x}px, ${currentPositionRef.current.y}px) translate(-50%, -50%) scale(${scale})`;
     };
 

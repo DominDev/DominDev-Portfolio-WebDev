@@ -5,6 +5,17 @@
 /**
  * index.css
  * Global CSS layer for shared effects, keyframes, and utility helpers.
+ *
+ * Allowed here:
+ * - Tailwind directives and app-wide base rules
+ * - accessibility and reduced-motion fallbacks
+ * - shared utility helpers reused across sections
+ * - global keyframes and visual primitives such as glow or mesh layers
+ *
+ * Keep out of this file:
+ * - section-specific layout styling that belongs in JSX classes
+ * - component-by-component CSS architecture
+ * - alternative styling systems such as CSS Modules or BEM layers
  */
 
 :root {
