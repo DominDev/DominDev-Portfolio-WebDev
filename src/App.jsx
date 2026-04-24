@@ -15,7 +15,7 @@ import { useCustomCursor } from "./hooks/useCustomCursor";
 
 export default function App() {
   const [showPreloader, setShowPreloader] = useState(true);
-  const { cursorVisible, cursorExpanded, cursorPosition } = useCustomCursor();
+  const { cursorRef } = useCustomCursor({ disabled: showPreloader });
   const handlePreloaderFinish = useCallback(() => {
     setShowPreloader(false);
   }, []);
@@ -37,14 +37,11 @@ export default function App() {
     <div className="min-h-screen overflow-x-hidden">
       {/* Keep the cursor at app root so it can track every interactive region. */}
       <div
+        ref={cursorRef}
         aria-hidden="true"
-        className={`pointer-events-none fixed z-[9999] hidden h-5 w-5 rounded-full bg-white mix-blend-difference transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] [@media(pointer:fine)]:block ${
-          cursorVisible && !showPreloader ? "opacity-100" : "opacity-0"
-        }`}
+        className="pointer-events-none fixed left-0 top-0 z-[9999] hidden h-5 w-5 rounded-full bg-white opacity-0 mix-blend-difference transition-opacity duration-300 ease-out [@media(pointer:fine)]:block"
         style={{
-          left: cursorPosition.x,
-          top: cursorPosition.y,
-          transform: `translate(-50%, -50%) scale(${cursorExpanded ? 3 : 1})`,
+          transform: "translate(-50%, -50%) scale(1)",
         }}
       />
 

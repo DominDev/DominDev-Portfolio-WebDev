@@ -67,7 +67,7 @@ function PreloaderDotField({ shouldReduceMotion, progressValue }) {
       const maxRadius = Math.hypot(width / 2, height / 2) + 40;
 
       // Reuse the same progress driver as the numeric counter so the animation and loading state stay in sync.
-      const cycleProgress = shouldReduceMotion ? 1 : progressValue;
+      const cycleProgress = shouldReduceMotion ? 1 : progressValue.current;
       let waveRadius = 0;
 
       if (!shouldReduceMotion) {
@@ -150,7 +150,7 @@ function PreloaderDotField({ shouldReduceMotion, progressValue }) {
 export function Preloader({ onFinish }) {
   const shouldReduceMotion = useReducedMotion();
   const [progress, setProgress] = useState(0);
-  const [progressValue, setProgressValue] = useState(0);
+  const progressValueRef = useRef(0);
   const duration = shouldReduceMotion ? 1100 : 3200;
 
   useEffect(() => {
@@ -161,8 +161,11 @@ export function Preloader({ onFinish }) {
       const elapsed = timestamp - startedAt;
       const rawProgress = Math.min(elapsed / duration, 1);
       const easedProgress = 1 - Math.pow(1 - rawProgress, 2.6);
-      setProgressValue(rawProgress);
-      setProgress(Math.round(easedProgress * 100));
+      const nextProgress = Math.round(easedProgress * 100);
+      progressValueRef.current = rawProgress;
+      setProgress((currentProgress) =>
+        currentProgress === nextProgress ? currentProgress : nextProgress
+      );
 
       if (rawProgress < 1) {
         rafId = window.requestAnimationFrame(tick);
@@ -213,7 +216,7 @@ export function Preloader({ onFinish }) {
       <div className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(circle_at_center,black_0%,black_48%,rgba(0,0,0,0.9)_72%,transparent_100%)]">
         <PreloaderDotField
           shouldReduceMotion={shouldReduceMotion}
-          progressValue={progressValue}
+          progressValue={progressValueRef}
         />
       </div>
 
