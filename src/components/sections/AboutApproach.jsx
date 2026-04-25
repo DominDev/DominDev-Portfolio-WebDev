@@ -6,13 +6,13 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { aboutSection, approachSection, principles } from "../../data/content";
-import personImageFallbackPng from "../../assets/images/person-damian-mono-v2-720.png";
-import personImage480Avif from "../../assets/images/person-damian-mono-v2-480.avif";
-import personImage480Webp from "../../assets/images/person-damian-mono-v2-480.webp";
-import personImage720Avif from "../../assets/images/person-damian-mono-v2-720.avif";
-import personImage1200Avif from "../../assets/images/person-damian-mono-v2-1200.avif";
-import personImage720Webp from "../../assets/images/person-damian-mono-v2-720.webp";
-import personImage1200Webp from "../../assets/images/person-damian-mono-v2-1200.webp";
+import personImageFallbackPng from "../../assets/images/person-damian-mono-v4-720.png";
+import personImage480Avif from "../../assets/images/person-damian-mono-v4-480.avif";
+import personImage480Webp from "../../assets/images/person-damian-mono-v4-480.webp";
+import personImage720Avif from "../../assets/images/person-damian-mono-v4-720.avif";
+import personImage1200Avif from "../../assets/images/person-damian-mono-v4-1200.avif";
+import personImage720Webp from "../../assets/images/person-damian-mono-v4-720.webp";
+import personImage1200Webp from "../../assets/images/person-damian-mono-v4-1200.webp";
 import { PrimaryButton, GhostButton } from "../ui/Button";
 import { ArrowRightIcon } from "../ui/Icons";
 import { MeshBackground } from "../effects/Backgrounds";
@@ -193,7 +193,7 @@ export function About() {
                         src={personImageFallbackPng}
                         alt={aboutSection.imageAlt}
                         width="720"
-                        height="1075"
+                        height="960"
                         loading="lazy"
                         decoding="async"
                         className="relative z-10 mx-auto h-auto max-h-[30rem] w-full max-w-[22rem] object-contain object-bottom brightness-[0.82] contrast-110 drop-shadow-[0_34px_60px_rgba(255,255,255,0.12)] sm:brightness-90 lg:ml-auto lg:mr-0"
